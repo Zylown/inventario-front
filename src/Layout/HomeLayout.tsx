@@ -5,5 +5,5 @@ export default function HomeLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <div className="bg-[#222222] h-screen flex flex-col justify-center">{children}</div>;
+  return <main className="bg-[#222222]">{children}</main>;
 }
