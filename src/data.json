@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "categoria": "TODOS",
+    "producto": "PELUCHE",
+    "marca": "generico",
+    "estado": "activo",
+    "stock": 10,
+    "precioC": 1.8,
+    "precioV": 5.0
+  },
+  {
+    "id": "2",
+    "categoria": "BOLSA",
+    "producto": "BOLSA DE REGALO",
+    "marca": "Importado",
+    "estado": "activo",
+    "stock": 20,
+    "precioC": 5.0,
+    "precioV": 8.0
+  }
+]

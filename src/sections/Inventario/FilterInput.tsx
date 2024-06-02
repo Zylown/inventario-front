@@ -10,7 +10,7 @@ export default function FilterInput() {
       </div>
       <div className="flex relative items-center flex-grow sm:ml-9">
         <input
-          className="p-2 w-full bg-crema rounded-lg text-white"
+          className="p-2 w-full bg-crema rounded-lg outline-none"
           type="text"
           placeholder="Escriba para filtrar"
         />
