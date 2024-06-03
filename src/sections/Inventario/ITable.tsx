@@ -34,6 +34,26 @@ export default function Table() {
       header: () => "Producto",
       cell: (info) => info.getValue(),
     }),
+    columnHelper.accessor("marca", {
+      header: () => "Marca",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("estado", {
+      header: () => "Estado",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("stock", {
+      header: () => "Stock",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("precioC", {
+      header: () => "Precio Compra",
+      cell: (info) => info.getValue(),
+    }),
+    columnHelper.accessor("precioV", {
+      header: () => "Precio Venta",
+      cell: (info) => info.getValue(),
+    }),
   ];
 
   const [inventario, setInventario] = useState<inventario[]>([]);
@@ -50,13 +70,16 @@ export default function Table() {
   });
 
   return (
-    <div>
-      <table className="w-full border-collapse">
+    <div className="pt-2 overflow-x-auto">
+      <table className="min-w-full border-collapse">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id}>
+            <tr key={headerGroup.id} className="text-white bg-verde-oscuro">
               {headerGroup.headers.map((column) => (
-                <th key={column.id} className="px-4 py-2 text-center">
+                <th
+                  key={column.id}
+                  className="px-4 py-2 text-center md:text-base text-sm"
+                >
                   <div>
                     {flexRender(
                       column.column.columnDef.header,
@@ -70,9 +93,12 @@ export default function Table() {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="text-center">
+            <tr key={row.id} className="text-center text-white">
               {row.getVisibleCells().map((cell) => (
-                <td key={cell.id} className="px-4 py-2">
+                <td
+                  key={cell.id}
+                  className="sm:px-4 sm:py-2 px-1 py-2 md:text-base text-sm"
+                >
                   {flexRender(cell.column.columnDef.cell, cell.getContext())}
                 </td>
               ))}

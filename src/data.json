@@ -3,8 +3,8 @@
     "id": "1",
     "categoria": "TODOS",
     "producto": "PELUCHE",
-    "marca": "generico",
-    "estado": "activo",
+    "marca": "Generico",
+    "estado": "Activo",
     "stock": 10,
     "precioC": 1.8,
     "precioV": 5.0
@@ -14,9 +14,39 @@
     "categoria": "BOLSA",
     "producto": "BOLSA DE REGALO",
     "marca": "Importado",
-    "estado": "activo",
-    "stock": 20,
+    "estado": "Activo",
+    "stock": 4,
+    "precioC": 5.0,
+    "precioV": 12.0
+  },
+  {
+    "id": "3",
+    "categoria": "JUGUETES",
+    "producto": "Juguete de madera",
+    "marca": "Importado",
+    "estado": "Activo",
+    "stock": 6,
     "precioC": 5.0,
     "precioV": 8.0
+  },
+  {
+    "id": "4",
+    "categoria": "JUGUETES",
+    "producto": "Toy Story",
+    "marca": "Importado",
+    "estado": "Activo",
+    "stock": 2,
+    "precioC": 11.0,
+    "precioV": 15.0
+  },
+  {
+    "id": "5",
+    "categoria": "CASA",
+    "producto": "Taza",
+    "marca": "Importado",
+    "estado": "Activo",
+    "stock": 8,
+    "precioC": 15.0,
+    "precioV": 20.0
   }
 ]

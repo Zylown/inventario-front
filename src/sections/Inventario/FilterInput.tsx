@@ -12,7 +12,7 @@ export default function FilterInput() {
         <input
           className="p-2 w-full bg-crema rounded-lg outline-none"
           type="text"
-          placeholder="Escriba para filtrar"
+          placeholder="Escriba para filtrar por producto"
         />
         <button className="absolute right-1" type="button">
           <IoSearch className="text-xl" />
