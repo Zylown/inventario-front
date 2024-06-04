@@ -6,14 +6,14 @@ import { FaBoxes } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="flex flex-col sm:gap-20 gap-12 flex-wrap justify-center sm:h-screen">
+    <div className="flex flex-col md:gap-20 gap-12 flex-wrap justify-center sm:h-screen">
       <div className="text-center text-[#ffffff]">
         <h1 className="sm:text-5xl sm:pt-0 pt-8 text-3xl font-semibold">
           Control de inventario
         </h1>
       </div>
       <div className="flex flex-col">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 sm:gap-4">
+        <ul className="grid grid-cols-1 sm:grid-cols-4 sm:gap-4">
           <li className="flex flex-col items-center">
             <Link
               className="text-center p-4 items-center flex flex-col hover:scale-110 transition-all duration-300"

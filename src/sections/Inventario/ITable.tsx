@@ -65,7 +65,7 @@ export default function Table() {
   const table = useReactTable({
     data: inventario,
     columns,
-    debugTable: true,
+    // debugTable: true,
     getCoreRowModel: getCoreRowModel(), // es una función que se encarga de manejar los datos de la tabla
   });
 
