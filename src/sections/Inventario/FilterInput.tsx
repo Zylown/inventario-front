@@ -1,8 +1,14 @@
-import { useState } from "react";
 import { IoSearch } from "react-icons/io5";
 
-export default function FilterInput() {
-  const [searchTerm, setSearchTerm] = useState<string>(""); // [1] Crear estado para el valor del input
+interface FilterInputProps {
+  searchTerm: string;
+  setSearchTerm: (term: string) => void;
+}
+
+export default function FilterInput({
+  searchTerm,
+  setSearchTerm,
+}: FilterInputProps) {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     // [2] Crear función para actualizar el estado
     // console.log(e.target.value);

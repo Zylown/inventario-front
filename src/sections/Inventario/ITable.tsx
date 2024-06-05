@@ -2,12 +2,17 @@ import {
   createColumnHelper,
   flexRender,
   getCoreRowModel,
+  SortingState,
   useReactTable,
 } from "@tanstack/react-table";
 import data from "../../data.json";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
-export default function Table() {
+interface ITableProps {
+  searchTerm: string;
+}
+
+export default function Table({ searchTerm }: ITableProps) {
   type inventario = {
     id: string;
     categoria: string;
@@ -57,16 +62,49 @@ export default function Table() {
   ];
 
   const [inventario, setInventario] = useState<inventario[]>([]);
+  const [sorting, setSorting] = useState<SortingState>([]); // [1] Crear estado para el ordenamiento
 
   useEffect(() => {
     setInventario(data);
   }, []);
 
+  /*
+  useMemo memoriza el resultado de la función que pasa como primer argumento y solo la vuelve a ejecutar si alguna de las dependencias (inventario, searchTerm, sorting) cambia. Esto mejora el rendimiento al evitar cálculos innecesarios en cada renderizado.
+  */
+  const filteredData = useMemo(() => {
+    // Filtrar los datos de inventario basándose en el término de búsqueda
+    let filtered = inventario.filter((item) =>
+      item.producto.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Si hay criterios de ordenamiento definidos
+    if (sorting.length) {
+      const sort = sorting[0]; // Obtener el primer criterio de ordenamiento
+      filtered = filtered.sort((a, b) => {
+        // Obtener los valores de los elementos a y b para la columna de ordenamiento actual
+        const aValue = a[sort.id as keyof inventario]; // Obtener el valor de la propiedad de a que corresponde a la columna de ordenamiento actual (sort.id) y asignarlo a aValue (aValue es de tipo any)
+        const bValue = b[sort.id as keyof inventario];
+
+        // Comparar los valores para determinar el orden
+        if (aValue < bValue) return sort.desc ? 1 : -1; // Ordenar ascendente o descendente según la dirección especificada
+        if (aValue > bValue) return sort.desc ? -1 : 1; // Ordenar ascendente o descendente según la dirección especificada
+        return 0; // Si los valores son iguales, no cambiar el orden
+      });
+    }
+
+    // Devolver los datos filtrados y ordenados
+    return filtered;
+  }, [inventario, searchTerm, sorting]); // Ejecutar este useMemo solo cuando inventario, searchTerm o sorting cambien
+
   const table = useReactTable({
-    data: inventario,
+    data: filteredData,
     columns,
     // debugTable: true,
     getCoreRowModel: getCoreRowModel(), // es una función que se encarga de manejar los datos de la tabla
+    state: {
+      sorting,
+    },
+    onSortingChange: setSorting, // [5] Asignar la función para actualizar el estado del ordenamiento
   });
 
   return (
@@ -80,11 +118,21 @@ export default function Table() {
                   key={column.id}
                   className="px-4 py-2 text-center md:text-base text-sm"
                 >
-                  <div>
+                  <div
+                    {...{
+                      className: column.column.getCanSort()
+                        ? "cursor-pointer select-none"
+                        : "",
+                      onClick: column.column.getToggleSortingHandler(),
+                    }}
+                  >
                     {flexRender(
                       column.column.columnDef.header,
                       column.getContext()
                     )}
+                    {{ asc: " ↑", desc: " ↓" }[
+                      column.column.getIsSorted() as string
+                    ] ?? null}
                   </div>
                 </th>
               ))}
