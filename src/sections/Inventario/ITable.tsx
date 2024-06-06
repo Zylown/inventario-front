@@ -7,23 +7,9 @@ import {
 } from "@tanstack/react-table";
 import data from "../../data.json";
 import { useEffect, useState, useMemo } from "react";
+import { inventario, ITableProps } from "../../types/ITable.ts";
 
-interface ITableProps {
-  searchTerm: string;
-}
-
-export default function Table({ searchTerm }: ITableProps) {
-  type inventario = {
-    id: string;
-    categoria: string;
-    producto: string;
-    marca: string;
-    estado: string;
-    stock: number;
-    precioC: number;
-    precioV: number;
-  };
-
+export default function Table({ searchTerm, selectedField }: ITableProps) {
   const columnHelper = createColumnHelper<inventario>();
 
   const columns = [
@@ -72,9 +58,14 @@ export default function Table({ searchTerm }: ITableProps) {
   useMemo memoriza el resultado de la función que pasa como primer argumento y solo la vuelve a ejecutar si alguna de las dependencias (inventario, searchTerm, sorting) cambia. Esto mejora el rendimiento al evitar cálculos innecesarios en cada renderizado.
   */
   const filteredData = useMemo(() => {
+    if (!selectedField) return inventario; // Si no se ha seleccionado un campo para filtrar, devolver todos los datos
+
     // Filtrar los datos de inventario basándose en el término de búsqueda
     let filtered = inventario.filter((item) =>
-      item.producto.toLowerCase().includes(searchTerm.toLowerCase())
+      item[selectedField as keyof inventario]
+        .toString()
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase())
     );
 
     // Si hay criterios de ordenamiento definidos
@@ -94,7 +85,7 @@ export default function Table({ searchTerm }: ITableProps) {
 
     // Devolver los datos filtrados y ordenados
     return filtered;
-  }, [inventario, searchTerm, sorting]); // Ejecutar este useMemo solo cuando inventario, searchTerm o sorting cambien
+  }, [inventario, searchTerm, sorting, selectedField]); // Ejecutar este useMemo solo cuando inventario, searchTerm o sorting cambien
 
   const table = useReactTable({
     data: filteredData,

@@ -7,6 +7,7 @@ export default function Top() {
   const handleBack = () => {
     navigate("/");
   };
+  
   return (
     <div className="flex justify-between text-white py-2 font-semibold flex-wrap items-center sm:gap-0 gap-2">
       <div className="sm:flex hidden">
