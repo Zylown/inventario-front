@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import ModalAgregar from "./ModalAgregar";
+import ModalAgregar from "./ModalAdd";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);

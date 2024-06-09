@@ -1,23 +1,36 @@
 import { IoCloseCircle } from "react-icons/io5";
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormAddSchema } from "../../validations/FormAdd.validate";
+import { ModalEditData } from "../../types/Modal.type";
 
 type ModalProps = {
   isVisible: boolean;
   onClose: () => void;
-  // children: React.ReactNode;
+  initialData: ModalEditData;
+  onEdit: (data: ModalEditData) => void;
 };
 
-export default function ModalAgregar({
+export default function ModalEdit({
   isVisible,
   onClose,
-}: // children,
-ModalProps) {
-  const { register, handleSubmit } = useForm();
+  initialData,
+  onEdit,
+}: ModalProps) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ModalEditData>({
+    resolver: zodResolver(FormAddSchema),
+    defaultValues: initialData,
+  });
 
-  if (!isVisible) return null; // esto significa que si isVisible es false, no se muestra nada
+  if (!isVisible) return null;
 
-  const onSubmit = async (e) => {
-    console.log(e);
+  const onSubmit = (data: ModalEditData) => {
+    onEdit(data);
+    onClose();
   };
 
   return (
@@ -31,31 +44,42 @@ ModalProps) {
           <IoCloseCircle />
         </button>
         <h1 className="font-semibold text-white text-center mb-4">
-          Agregar producto
+          Editar producto
         </h1>
-
         <form
           className="w-full flex flex-col gap-4"
           onSubmit={handleSubmit(onSubmit)}
         >
-          <input
-            type="text"
-            className="p-2 w-full bg-crema rounded-lg"
-            placeholder="Categoria"
-            {...register("categoria")}
-          />
+          <div className="flex gap-4">
+            <select
+              className="p-2 w-full bg-crema rounded-lg"
+              {...register("categoria")}
+            >
+              <option value="bolsa">BOLSA</option>
+              <option value="todos">TODOS</option>
+            </select>
+          </div>
+          {errors.categoria && (
+            <p className="text-red-500">{"* " + errors.categoria.message}</p>
+          )}
           <input
             type="text"
             className="p-2 w-full bg-crema rounded-lg"
             placeholder="Nombre del producto"
             {...register("producto")}
           />
+          {errors.producto && (
+            <p className="text-red-500">{"* " + errors.producto.message}</p>
+          )}
           <input
             type="text"
             className="p-2 w-full bg-crema rounded-lg"
             placeholder="Marca del producto"
             {...register("marca")}
           />
+          {errors.marca && (
+            <p className="text-red-500">{"* " + errors.marca.message}</p>
+          )}
           <select
             className="p-2 w-full bg-crema rounded-lg"
             {...register("estado")}
@@ -67,25 +91,28 @@ ModalProps) {
             type="text"
             className="p-2 w-full bg-crema rounded-lg"
             placeholder="Stock"
-            {...register("stock")}
+            {...register("stock", { valueAsNumber: true })}
           />
+          {errors.stock && (
+            <p className="text-red-500">{"* " + errors.stock.message}</p>
+          )}
           <input
             type="text"
             className="p-2 w-full bg-crema rounded-lg"
             placeholder="Precio de compra"
-            {...register("precioC")}
+            {...register("precioC", { valueAsNumber: true })}
           />
           <input
             type="text"
             className="p-2 w-full bg-crema rounded-lg"
             placeholder="Precio de venta"
-            {...register("precioV")}
+            {...register("precioV", { valueAsNumber: true })}
           />
           <button
             type="submit"
             className="hover:opacity-90 transition-all bg-verde-oscuro px-4 py-2 rounded-lg text-white"
           >
-            Enviar
+            Editar
           </button>
         </form>
       </div>
