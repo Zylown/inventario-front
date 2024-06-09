@@ -8,6 +8,8 @@ import {
 import data from "../../data.json";
 import { useEffect, useState, useMemo } from "react";
 import { inventario, ITableProps } from "../../types/ITable.ts";
+import ModalEdit from "./ModalEdit";
+import { ModalEditData } from "../../types/Modal.type.ts";
 
 export default function Table({ searchTerm, selectedField }: ITableProps) {
   const columnHelper = createColumnHelper<inventario>();
@@ -49,10 +51,31 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
 
   const [inventario, setInventario] = useState<inventario[]>([]);
   const [sorting, setSorting] = useState<SortingState>([]); // [1] Crear estado para el ordenamiento
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [editingRow, setEditingRow] = useState<inventario | null>(null);
 
   useEffect(() => {
     setInventario(data);
   }, []);
+
+  const handleRowClick = (row: inventario) => {
+    setEditingRow(row);
+    setIsModalVisible(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalVisible(false);
+    setEditingRow(null);
+  };
+
+  const handleEdit = (updatedData: ModalEditData) => {
+    setInventario((prevInventario) =>
+      prevInventario.map(
+        (item) =>
+          item.id === updatedData.id ? { ...item, ...updatedData } : item //
+      )
+    );
+  };
 
   /*
   useMemo memoriza el resultado de la función que pasa como primer argumento y solo la vuelve a ejecutar si alguna de las dependencias (inventario, searchTerm, sorting) cambia. Esto mejora el rendimiento al evitar cálculos innecesarios en cada renderizado.
@@ -132,7 +155,11 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
         </thead>
         <tbody>
           {table.getRowModel().rows.map((row) => (
-            <tr key={row.id} className="text-center text-white">
+            <tr
+              key={row.id}
+              className="text-center text-white cursor-pointer"
+              onClick={() => handleRowClick(row.original)}
+            >
               {row.getVisibleCells().map((cell) => (
                 <td
                   key={cell.id}
@@ -145,16 +172,14 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
           ))}
         </tbody>
       </table>
+      {editingRow && (
+        <ModalEdit
+          isVisible={isModalVisible}
+          onClose={handleModalClose}
+          initialData={editingRow}
+          onEdit={handleEdit}
+        />
+      )}
     </div>
   );
 }
-/*
-<tr>
-            <th>Id</th>
-          </tr>
-          <tbody>
-            <tr>
-              <td>1</td>
-            </tr>
-          </tbody>
-*/
