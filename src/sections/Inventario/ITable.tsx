@@ -88,7 +88,7 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
       item[selectedField as keyof inventario]
         .toString()
         .toLowerCase()
-        .includes(searchTerm.toLowerCase())
+        .startsWith(searchTerm.toLowerCase())
     );
 
     // Si hay criterios de ordenamiento definidos
@@ -157,7 +157,7 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
           {table.getRowModel().rows.map((row) => (
             <tr
               key={row.id}
-              className="text-center text-white cursor-pointer"
+              className="text-center text-white cursor-pointer hover:bg-gray-200 hover:bg-opacity-10"
               onClick={() => handleRowClick(row.original)}
             >
               {row.getVisibleCells().map((cell) => (
