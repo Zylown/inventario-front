@@ -1,27 +1,18 @@
 import { create } from "zustand";
-
-// Definimos los tipos de datos que se van a utilizar
-type Product = {
-  categoria: string;
-  producto: string;
-  marca: string;
-  estado: string;
-  stock: number;
-  precioC: number;
-  precioV: number;
-};
+import data from "../data.json";
+import { ModalAddData } from "../types/Modal.type";
 
 // Definimos el estado de la aplicación y las funciones que se van a utilizar
 type StoreState = {
-  products: Product[];
-  addProduct: (product: Product) => void;
+  products: ModalAddData[];
+  addProduct: (product: ModalAddData) => void;
 };
 
 // Creamos el store con Zustand y definimos el estado inicial
 export const useStore = create<StoreState>((init) => ({
-  products: [], // sirve para almacenar los productos
+  products: data, // Inicializa con los datos del archivo JSON
   addProduct: (product) =>
     init((state) => ({
-      products: [...state.products, product], // sirve para agregar un nuevo producto al estado de productos
+      products: [...state.products, product], // Agrega un nuevo producto al estado de productos
     })),
 }));

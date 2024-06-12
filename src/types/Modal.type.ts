@@ -1,4 +1,5 @@
 export interface ModalAddData {
+  id: string;
   categoria: string;
   producto: string;
   marca: string;

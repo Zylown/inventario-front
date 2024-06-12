@@ -15,6 +15,7 @@ ModalProps) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<ModalAddData>({
     resolver: zodResolver(FormAddSchema),
@@ -25,12 +26,10 @@ ModalProps) {
 
   const onSubmit = async (data: ModalAddData) => {
     console.log(data);
-    if (typeof onAdd === "function") {
-      onAdd(data);
-      onClose();
-    } else {
-      console.error("onAdd is not a function");
-    }
+    data.estado = data.estado === "1" ? "Activo" : "Inactivo"; // Convertir el estado a texto
+    onAdd(data);
+    reset();
+    onClose();
   };
 
   const handleChangeCheckBox = () => {
@@ -68,8 +67,11 @@ ModalProps) {
                 className="p-2 w-full bg-crema rounded-lg"
                 {...register("categoria")}
               >
-                <option value="bolsa">BOLSA</option>
-                <option value="todos">TODOS</option>
+                <option value="TODOS">TODOS</option>
+                <option value="JUGUETES">JUGUETES</option>
+                <option value="ROPA">ROPA</option>
+                <option value="ELECTRONICA">ELECTRONICA</option>
+                <option value="LIBROS">LIBROS</option>
               </select>
             )}
             <input

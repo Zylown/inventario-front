@@ -5,7 +5,7 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-import data from "../../data.json";
+// import data from "../../data.json";
 import { useEffect, useState, useMemo } from "react";
 import { inventario, ITableProps } from "../../types/ITable.ts";
 import ModalEdit from "./ModalEdit";
@@ -13,7 +13,7 @@ import { ModalEditData } from "../../types/Modal.type.ts";
 import { useStore } from "../../context/store.ts";
 
 export default function Table({ searchTerm, selectedField }: ITableProps) {
-  // const products = useStore((state) => state.products); // es una función que se obtiene del store
+  const products = useStore((state) => state.products); // Obtener productos del store
 
   const [inventario, setInventario] = useState<inventario[]>([]);
   const [sorting, setSorting] = useState<SortingState>([]); // [1] Crear estado para el ordenamiento
@@ -57,8 +57,8 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
   ];
 
   useEffect(() => {
-    setInventario(data);
-  }, []);
+    setInventario(products); // Inicializa el inventario con los productos del store
+  }, [products]);
 
   const handleRowClick = (row: inventario) => {
     setEditingRow(row);
@@ -72,9 +72,8 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
 
   const handleEdit = (updatedData: ModalEditData) => {
     setInventario((prevInventario) =>
-      prevInventario.map(
-        (item) =>
-          item.id === updatedData.id ? { ...item, ...updatedData } : item //
+      prevInventario.map((item) =>
+        item.id === updatedData.id ? { ...item, ...updatedData } : item
       )
     );
   };
