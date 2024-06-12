@@ -55,8 +55,11 @@ export default function ModalEdit({
               className="p-2 w-full bg-crema rounded-lg"
               {...register("categoria")}
             >
-              <option value="bolsa">BOLSA</option>
-              <option value="todos">TODOS</option>
+              <option value="TODOS">TODOS</option>
+              <option value="JUGUETES">JUGUETES</option>
+              <option value="ROPA">ROPA</option>
+              <option value="ELECTRONICA">ELECTRONICA</option>
+              <option value="LIBROS">LIBROS</option>
             </select>
           </div>
           {errors.categoria && (
@@ -84,8 +87,8 @@ export default function ModalEdit({
             className="p-2 w-full bg-crema rounded-lg"
             {...register("estado")}
           >
-            <option value="1">Activo</option>
-            <option value="0">Desactivo</option>
+            <option value="ACTIVO">ACTIVO</option>
+            <option value="INACTIVO">INACTIVO</option>
           </select>
           <input
             type="text"

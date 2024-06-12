@@ -26,7 +26,6 @@ ModalProps) {
 
   const onSubmit = async (data: ModalAddData) => {
     console.log(data);
-    data.estado = data.estado === "1" ? "Activo" : "Inactivo"; // Convertir el estado a texto
     onAdd(data);
     reset();
     onClose();
@@ -105,8 +104,8 @@ ModalProps) {
             className="p-2 w-full bg-crema rounded-lg"
             {...register("estado")}
           >
-            <option value="1">Activo</option>
-            <option value="0">Desactivo</option>
+            <option value="ACTIVO">ACTIVO</option>
+            <option value="INACTIVO">INACTIVO</option>
           </select>
           <input
             type="text"
