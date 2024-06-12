@@ -8,6 +8,7 @@ import { ModalAddData } from "../../types/Modal.type";
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+  const products = useStore((state) => state.products); // Obtener productos del store
   const addProduct = useStore((state) => state.addProduct); // es una función que se obtiene del store
 
   const handleBack = () => {
@@ -15,7 +16,12 @@ export default function Top() {
   };
 
   const handleAdd = (product: ModalAddData) => {
-    addProduct(product);
+    const maxId = products.reduce(
+      (max, product) => Math.max(max, parseInt(product.id.toString(), 10)),
+      0
+    );
+    const newProduct = { ...product, id: (maxId + 1).toString() };
+    addProduct(newProduct);
   };
 
   return (
