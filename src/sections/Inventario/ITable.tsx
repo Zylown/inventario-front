@@ -10,8 +10,15 @@ import { useEffect, useState, useMemo } from "react";
 import { inventario, ITableProps } from "../../types/ITable.ts";
 import ModalEdit from "./ModalEdit";
 import { ModalEditData } from "../../types/Modal.type.ts";
+import { useStore } from "../../context/store.ts";
 
 export default function Table({ searchTerm, selectedField }: ITableProps) {
+  // const products = useStore((state) => state.products); // es una función que se obtiene del store
+
+  const [inventario, setInventario] = useState<inventario[]>([]);
+  const [sorting, setSorting] = useState<SortingState>([]); // [1] Crear estado para el ordenamiento
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [editingRow, setEditingRow] = useState<inventario | null>(null);
   const columnHelper = createColumnHelper<inventario>();
 
   const columns = [
@@ -48,11 +55,6 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
       cell: (info) => info.getValue(),
     }),
   ];
-
-  const [inventario, setInventario] = useState<inventario[]>([]);
-  const [sorting, setSorting] = useState<SortingState>([]); // [1] Crear estado para el ordenamiento
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [editingRow, setEditingRow] = useState<inventario | null>(null);
 
   useEffect(() => {
     setInventario(data);
@@ -122,11 +124,14 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
   });
 
   return (
-    <div className="pt-2 overflow-x-auto">
+    <div className="pt-2 overflow-x-auto h-[70vh]">
       <table className="min-w-full border-collapse">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
-            <tr key={headerGroup.id} className="text-white bg-verde-oscuro">
+            <tr
+              key={headerGroup.id}
+              className="text-white bg-verde-oscuro sticky -top-2"
+            >
               {headerGroup.headers.map((column) => (
                 <th
                   key={column.id}

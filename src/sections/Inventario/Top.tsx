@@ -2,13 +2,20 @@ import { useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import ModalAgregar from "./ModalAdd";
+import { useStore } from "../../context/store";
+import { ModalAddData } from "../../types/Modal.type";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
+  const addProduct = useStore((state) => state.addProduct); // es una función que se obtiene del store
 
   const handleBack = () => {
     navigate("/");
+  };
+
+  const handleAdd = (product: ModalAddData) => {
+    addProduct(product);
   };
 
   return (
@@ -47,6 +54,7 @@ export default function Top() {
         <ModalAgregar
           isVisible={isVisible}
           onClose={() => setIsVisible(false)}
+          onAdd={handleAdd}
         />
       )}
     </>

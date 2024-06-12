@@ -4,16 +4,12 @@ import { useState } from "react";
 import { ModalAddData } from "../../types/Modal.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormAddSchema } from "../../validations/FormAdd.validate";
-
-type ModalProps = {
-  isVisible: boolean;
-  onClose: () => void;
-  // children: React.ReactNode;
-};
+import { ModalProps } from "../../types/Top";
 
 export default function ModalAgregar({
   isVisible,
   onClose,
+  onAdd,
 }: // children,
 ModalProps) {
   const {
@@ -27,15 +23,21 @@ ModalProps) {
 
   if (!isVisible) return null; // esto significa que si isVisible es false, no se muestra nada
 
-  const onSubmit = async (e) => {
-    console.log(e);
+  const onSubmit = async (data: ModalAddData) => {
+    console.log(data);
+    if (typeof onAdd === "function") {
+      onAdd(data);
+      onClose();
+    } else {
+      console.error("onAdd is not a function");
+    }
   };
 
   const handleChangeCheckBox = () => {
     setCheckBox(!checkBox);
   };
 
-  return (
+  return isVisible ? (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
       <div className="bg-verde-claro w-5/12 p-4 rounded-lg flex flex-col items-center relative">
         <button
@@ -131,5 +133,5 @@ ModalProps) {
         </form>
       </div>
     </div>
-  );
+  ) : null;
 }
