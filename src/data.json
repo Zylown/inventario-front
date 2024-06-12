@@ -1,52 +1,312 @@
 [
   {
+    "id": "0",
+    "categoria": "JUGUETES",
+    "producto": "AURICULARES",
+    "marca": "GLOBOIL",
+    "estado": "Inactivo",
+    "stock": 37,
+    "precioC": 9.53,
+    "precioV": 46.99
+  },
+  {
     "id": "1",
-    "categoria": "TODOS",
-    "producto": "PELUCHE",
-    "marca": "Generico",
-    "estado": "Activo",
-    "stock": 10,
-    "precioC": 1.8,
-    "precioV": 5.0
+    "categoria": "JUGUETES",
+    "producto": "NOVELA",
+    "marca": "SLAX",
+    "estado": "Inactivo",
+    "stock": 0,
+    "precioC": 2.36,
+    "precioV": 19.03
   },
   {
     "id": "2",
-    "categoria": "BOLSA",
-    "producto": "BOLSA DE REGALO",
-    "marca": "Importado",
-    "estado": "Activo",
-    "stock": 4,
-    "precioC": 5.0,
-    "precioV": 12.0
+    "categoria": "LIBROS",
+    "producto": "NOVELA",
+    "marca": "IMKAN",
+    "estado": "Inactivo",
+    "stock": 7,
+    "precioC": 6.57,
+    "precioV": 15.66
   },
   {
     "id": "3",
     "categoria": "JUGUETES",
-    "producto": "Juguete de madera",
-    "marca": "Importado",
+    "producto": "MUÑECA",
+    "marca": "KAGE",
     "estado": "Activo",
-    "stock": 6,
-    "precioC": 5.0,
-    "precioV": 8.0
+    "stock": 2,
+    "precioC": 2.65,
+    "precioV": 31.35
   },
   {
     "id": "4",
-    "categoria": "JUGUETES",
-    "producto": "Toy Story",
-    "marca": "Importado",
+    "categoria": "LIBROS",
+    "producto": "NOVELA",
+    "marca": "CALCU",
     "estado": "Activo",
-    "stock": 2,
-    "precioC": 11.0,
-    "precioV": 15.0
+    "stock": 71,
+    "precioC": 7.27,
+    "precioV": 14.98
   },
   {
     "id": "5",
-    "categoria": "CASA",
-    "producto": "Taza",
-    "marca": "Importado",
+    "categoria": "ROPA",
+    "producto": "AURICULARES",
+    "marca": "MULTRON",
+    "estado": "Inactivo",
+    "stock": 32,
+    "precioC": 4.76,
+    "precioV": 20.5
+  },
+  {
+    "id": "6",
+    "categoria": "ELECTRONICA",
+    "producto": "PELUCHE",
+    "marca": "STELAECOR",
     "estado": "Activo",
-    "stock": 8,
-    "precioC": 15.0,
-    "precioV": 20.0
+    "stock": 97,
+    "precioC": 5.43,
+    "precioV": 17.84
+  },
+  {
+    "id": "7",
+    "categoria": "TODOS",
+    "producto": "MUÑECA",
+    "marca": "ISOLOGIA",
+    "estado": "Inactivo",
+    "stock": 75,
+    "precioC": 7.49,
+    "precioV": 6.04
+  },
+  {
+    "id": "8",
+    "categoria": "LIBROS",
+    "producto": "CAMISETA",
+    "marca": "FIREWAX",
+    "estado": "Inactivo",
+    "stock": 55,
+    "precioC": 3.81,
+    "precioV": 37.22
+  },
+  {
+    "id": "9",
+    "categoria": "ROPA",
+    "producto": "PELUCHE",
+    "marca": "TERASCAPE",
+    "estado": "Inactivo",
+    "stock": 10,
+    "precioC": 6.89,
+    "precioV": 14.63
+  },
+  {
+    "id": "10",
+    "categoria": "TODOS",
+    "producto": "CAMISETA",
+    "marca": "OATFARM",
+    "estado": "Activo",
+    "stock": 89,
+    "precioC": 7.68,
+    "precioV": 41.14
+  },
+  {
+    "id": "11",
+    "categoria": "TODOS",
+    "producto": "MUÑECA",
+    "marca": "COMVOY",
+    "estado": "Activo",
+    "stock": 80,
+    "precioC": 5.43,
+    "precioV": 32.94
+  },
+  {
+    "id": "12",
+    "categoria": "LIBROS",
+    "producto": "MUÑECA",
+    "marca": "MEDALERT",
+    "estado": "Activo",
+    "stock": 81,
+    "precioC": 8.14,
+    "precioV": 39.09
+  },
+  {
+    "id": "13",
+    "categoria": "ROPA",
+    "producto": "AURICULARES",
+    "marca": "ZOXY",
+    "estado": "Activo",
+    "stock": 16,
+    "precioC": 6.85,
+    "precioV": 20.2
+  },
+  {
+    "id": "14",
+    "categoria": "ROPA",
+    "producto": "MUÑECA",
+    "marca": "AMTAP",
+    "estado": "Inactivo",
+    "stock": 87,
+    "precioC": 8.2,
+    "precioV": 46.3
+  },
+  {
+    "id": "15",
+    "categoria": "ELECTRONICA",
+    "producto": "MUÑECA",
+    "marca": "XPLOR",
+    "estado": "Inactivo",
+    "stock": 0,
+    "precioC": 2.08,
+    "precioV": 7.14
+  },
+  {
+    "id": "16",
+    "categoria": "ROPA",
+    "producto": "AURICULARES",
+    "marca": "DUFLEX",
+    "estado": "Inactivo",
+    "stock": 10,
+    "precioC": 4.7,
+    "precioV": 16.52
+  },
+  {
+    "id": "17",
+    "categoria": "LIBROS",
+    "producto": "CAMISETA",
+    "marca": "TERRASYS",
+    "estado": "Activo",
+    "stock": 80,
+    "precioC": 5.17,
+    "precioV": 21.91
+  },
+  {
+    "id": "18",
+    "categoria": "ELECTRONICA",
+    "producto": "NOVELA",
+    "marca": "EZENT",
+    "estado": "Inactivo",
+    "stock": 4,
+    "precioC": 5.35,
+    "precioV": 19.7
+  },
+  {
+    "id": "19",
+    "categoria": "JUGUETES",
+    "producto": "MUÑECA",
+    "marca": "RUBADUB",
+    "estado": "Activo",
+    "stock": 14,
+    "precioC": 1.55,
+    "precioV": 12.13
+  },
+  {
+    "id": "20",
+    "categoria": "ELECTRONICA",
+    "producto": "AURICULARES",
+    "marca": "EPLOSION",
+    "estado": "Activo",
+    "stock": 27,
+    "precioC": 5.16,
+    "precioV": 30.31
+  },
+  {
+    "id": "21",
+    "categoria": "TODOS",
+    "producto": "NOVELA",
+    "marca": "MOLTONIC",
+    "estado": "Inactivo",
+    "stock": 57,
+    "precioC": 4.61,
+    "precioV": 7.88
+  },
+  {
+    "id": "22",
+    "categoria": "LIBROS",
+    "producto": "MUÑECA",
+    "marca": "LOCAZONE",
+    "estado": "Inactivo",
+    "stock": 61,
+    "precioC": 8.19,
+    "precioV": 48.16
+  },
+  {
+    "id": "23",
+    "categoria": "ELECTRONICA",
+    "producto": "NOVELA",
+    "marca": "BUZZNESS",
+    "estado": "Inactivo",
+    "stock": 23,
+    "precioC": 6.32,
+    "precioV": 45.62
+  },
+  {
+    "id": "24",
+    "categoria": "ELECTRONICA",
+    "producto": "PELUCHE",
+    "marca": "COMTOUR",
+    "estado": "Inactivo",
+    "stock": 90,
+    "precioC": 4.94,
+    "precioV": 9.94
+  },
+  {
+    "id": "25",
+    "categoria": "ELECTRONICA",
+    "producto": "MUÑECA",
+    "marca": "KINDALOO",
+    "estado": "Inactivo",
+    "stock": 96,
+    "precioC": 4.91,
+    "precioV": 31.2
+  },
+  {
+    "id": "26",
+    "categoria": "ELECTRONICA",
+    "producto": "NOVELA",
+    "marca": "ZILLACTIC",
+    "estado": "Activo",
+    "stock": 65,
+    "precioC": 9.74,
+    "precioV": 50
+  },
+  {
+    "id": "27",
+    "categoria": "ELECTRONICA",
+    "producto": "AURICULARES",
+    "marca": "ENDIPIN",
+    "estado": "Activo",
+    "stock": 11,
+    "precioC": 1.01,
+    "precioV": 18.92
+  },
+  {
+    "id": "28",
+    "categoria": "JUGUETES",
+    "producto": "AURICULARES",
+    "marca": "MEDICROIX",
+    "estado": "Activo",
+    "stock": 19,
+    "precioC": 2.33,
+    "precioV": 11.24
+  },
+  {
+    "id": "29",
+    "categoria": "ROPA",
+    "producto": "AURICULARES",
+    "marca": "SKYBOLD",
+    "estado": "Inactivo",
+    "stock": 34,
+    "precioC": 7.49,
+    "precioV": 18.11
+  },
+  {
+    "id": "30",
+    "categoria": "LIBROS",
+    "producto": "AURICULARES",
+    "marca": "JASPER",
+    "estado": "Activo",
+    "stock": 58,
+    "precioC": 1.26,
+    "precioV": 30.48
   }
 ]
