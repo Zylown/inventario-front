@@ -2,14 +2,8 @@ import { IoCloseCircle } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormAddSchema } from "../../validations/FormAdd.validate";
-import { ModalEditData } from "../../types/Modal.type";
-
-type ModalProps = {
-  isVisible: boolean;
-  onClose: () => void;
-  initialData: ModalEditData;
-  onEdit: (data: ModalEditData) => void;
-};
+import { InventarioProps, ModalProps } from "../../types/Modal.type";
+import { useEffect } from "react";
 
 export default function ModalEdit({
   isVisible,
@@ -21,15 +15,25 @@ export default function ModalEdit({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<ModalEditData>({
+    reset,
+  } = useForm<InventarioProps>({
     resolver: zodResolver(FormAddSchema),
     defaultValues: initialData,
   });
 
+  useEffect(() => {
+    isVisible && reset(initialData);
+  }, [isVisible, initialData, reset]);
+
   if (!isVisible) return null;
 
-  const onSubmit = (data: ModalEditData) => {
-    onEdit(data);
+  const onSubmit = (data: InventarioProps) => {
+    console.log("Data to edit:", data);
+    const updatedData = {
+      ...data,
+      id: initialData.id, // Mantener el ID original del producto
+    };
+    onEdit(updatedData);
     onClose();
   };
 

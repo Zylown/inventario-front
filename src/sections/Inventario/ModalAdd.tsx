@@ -1,7 +1,7 @@
 import { IoCloseCircle } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { ModalAddData } from "../../types/Modal.type";
+import { InventarioProps } from "../../types/Modal.type";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormAddSchema } from "../../validations/FormAdd.validate";
 import { ModalProps } from "../../types/Top";
@@ -17,14 +17,14 @@ ModalProps) {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<ModalAddData>({
+  } = useForm<InventarioProps>({
     resolver: zodResolver(FormAddSchema),
   });
   const [checkBox, setCheckBox] = useState(false);
 
   if (!isVisible) return null; // esto significa que si isVisible es false, no se muestra nada
 
-  const onSubmit = async (data: ModalAddData) => {
+  const onSubmit = async (data: InventarioProps) => {
     console.log(data);
     onAdd(data);
     reset();

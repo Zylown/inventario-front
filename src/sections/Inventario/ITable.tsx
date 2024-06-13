@@ -7,19 +7,20 @@ import {
 } from "@tanstack/react-table";
 // import data from "../../data.json";
 import { useEffect, useState, useMemo } from "react";
-import { inventario, ITableProps } from "../../types/ITable.ts";
+import { ITableProps } from "../../types/ITable.ts";
+import { InventarioProps } from "../../types/Modal.type";
 import ModalEdit from "./ModalEdit";
-import { ModalEditData } from "../../types/Modal.type.ts";
 import { useStore } from "../../context/store.ts";
 
 export default function Table({ searchTerm, selectedField }: ITableProps) {
   const products = useStore((state) => state.products); // Obtener productos del store
+  const editProduct = useStore((state) => state.editProduct); // Obtener función para editar producto del store
 
-  const [inventario, setInventario] = useState<inventario[]>([]);
+  const [inventario, setInventario] = useState<InventarioProps[]>([]);
   const [sorting, setSorting] = useState<SortingState>([]); // [1] Crear estado para el ordenamiento
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [editingRow, setEditingRow] = useState<inventario | null>(null);
-  const columnHelper = createColumnHelper<inventario>();
+  const [editingRow, setEditingRow] = useState<InventarioProps | null>(null);
+  const columnHelper = createColumnHelper<InventarioProps>();
 
   const columns = [
     columnHelper.accessor("id", {
@@ -58,9 +59,10 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
 
   useEffect(() => {
     setInventario(products); // Inicializa el inventario con los productos del store
+    console.log("Products updated:", products);
   }, [products]);
 
-  const handleRowClick = (row: inventario) => {
+  const handleRowClick = (row: InventarioProps) => {
     setEditingRow(row);
     setIsModalVisible(true);
   };
@@ -70,12 +72,11 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
     setEditingRow(null);
   };
 
-  const handleEdit = (updatedData: ModalEditData) => {
-    setInventario((prevInventario) =>
-      prevInventario.map((item) =>
-        item.id === updatedData.id ? { ...item, ...updatedData } : item
-      )
-    );
+  const handleEdit = (updatedData: InventarioProps) => {
+    console.log("Editing product:", updatedData);
+    editProduct(updatedData);
+    setIsModalVisible(false);
+    setEditingRow(null);
   };
 
   /*
@@ -86,7 +87,7 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
 
     // Filtrar los datos de inventario basándose en el término de búsqueda
     let filtered = inventario.filter((item) =>
-      item[selectedField as keyof inventario]
+      item[selectedField as keyof InventarioProps]
         .toString()
         .toLowerCase()
         .startsWith(searchTerm.toLowerCase())
@@ -97,8 +98,8 @@ export default function Table({ searchTerm, selectedField }: ITableProps) {
       const sort = sorting[0]; // Obtener el primer criterio de ordenamiento
       filtered = filtered.sort((a, b) => {
         // Obtener los valores de los elementos a y b para la columna de ordenamiento actual
-        const aValue = a[sort.id as keyof inventario]; // Obtener el valor de la propiedad de a que corresponde a la columna de ordenamiento actual (sort.id) y asignarlo a aValue (aValue es de tipo any)
-        const bValue = b[sort.id as keyof inventario];
+        const aValue = a[sort.id as keyof InventarioProps]; // Obtener el valor de la propiedad de a que corresponde a la columna de ordenamiento actual (sort.id) y asignarlo a aValue (aValue es de tipo any)
+        const bValue = b[sort.id as keyof InventarioProps];
 
         // Comparar los valores para determinar el orden
         if (aValue < bValue) return sort.desc ? 1 : -1; // Ordenar ascendente o descendente según la dirección especificada
