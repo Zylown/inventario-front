@@ -17,7 +17,7 @@ export default function Home() {
           <li className="flex flex-col items-center">
             <Link
               className="text-center p-4 items-center flex flex-col hover:scale-110 transition-all duration-300"
-              to={""}
+              to={"/ventas"}
             >
               <div className="mb-4 bg-[#044343] rounded-full p-6">
                 <MdOutlineSell className="md:text-7xl text-4xl text-[#E4E4E4]" />

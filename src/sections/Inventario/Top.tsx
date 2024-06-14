@@ -3,7 +3,7 @@ import { IoArrowBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import ModalAgregar from "./ModalAdd";
 import { useStore } from "../../context/store";
-import { ModalAddData } from "../../types/Modal.type";
+import { InventarioProps } from "../../types/Modal.type";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,7 +15,7 @@ export default function Top() {
     navigate("/");
   };
 
-  const handleAdd = (product: ModalAddData) => {
+  const handleAdd = (product: InventarioProps) => {
     const maxId = products.reduce(
       (max, product) => Math.max(max, parseInt(product.id.toString(), 10)),
       0
@@ -48,12 +48,12 @@ export default function Top() {
           >
             Agregar
           </button>
-          <button
+          {/* <button
             className="hover:bg-verde-oscuro transition-all bg-verde-claro px-4 py-2 rounded-lg"
             type="button"
           >
             Importar
-          </button>
+          </button> */}
         </div>
       </div>
       {isVisible && (

@@ -2,11 +2,13 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Kardex from "./pages/Kardex";
 import Inventario from "./pages/Inventario";
+import Ventas from "./pages/Ventas";
 function App() {
   return (
     <>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/ventas" element={<Ventas />} />
         <Route path="/inventario" element={<Inventario />} />
         <Route path="/kardex" element={<Kardex />} />
         <Route
