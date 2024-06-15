@@ -1,4 +1,4 @@
-import { inventario } from "../types/ITable";
+import { inventario } from "../types/Table";
 
 export default function OptionsFilter() {
   const inventarioKeys = Object.keys({

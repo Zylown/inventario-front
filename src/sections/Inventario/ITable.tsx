@@ -7,7 +7,7 @@ import {
 } from "@tanstack/react-table";
 // import data from "../../data.json";
 import { useEffect, useState, useMemo } from "react";
-import { ITableProps } from "../../types/ITable.ts";
+import { ITableProps } from "../../types/Table.ts";
 import { InventarioProps } from "../../types/Modal.type";
 import ModalEdit from "./ModalEdit";
 import { useStore } from "../../context/store.ts";
