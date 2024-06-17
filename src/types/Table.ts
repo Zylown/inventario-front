@@ -3,13 +3,27 @@ export interface ITableProps {
   selectedField: string;
 }
 
-export interface KTableProps {
-  fecha: Date;
+export interface KardexProps {
+  id: string;
+  fecha: string;
+  hora: string;
+  producto: string;
   descripcion: string;
-  documento: string;
-  entradas: number;
-  salidas: number;
-  saldo: number;
-  costoUnitario: number;
-  costoTotal: number;
+  agente: string;
+  nombre: string;
+  inicial: number;
+  entrada: number;
+  salida: number;
+  final: number;
 }
+
+// export type InventarioProps = {
+//   id: string;
+//   categoria: string;
+//   producto: string;
+//   marca: string;
+//   estado: string;
+//   stock: number;
+//   precioC: number;
+//   precioV: number;
+// };

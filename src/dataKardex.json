@@ -1,0 +1,41 @@
+[
+  {
+    "id": "0",
+    "fecha": "16/06/2024",
+    "hora": "22:00",
+    "producto": "Play Station 6",
+    "descripcion": "Venta",
+    "agente": "Cliente",
+    "nombre": "Pedro Castillo",
+    "inicial": 10,
+    "entrada": 0,
+    "salida": 2,
+    "final": 8
+  },
+  {
+    "id": "1",
+    "fecha": "15/06/2024",
+    "hora": "12:33",
+    "producto": "Varias",
+    "descripcion": "Compras",
+    "agente": "Usuario",
+    "nombre": "user99",
+    "inicial": 12,
+    "entrada": 10,
+    "salida": 0,
+    "final": 22
+  },
+  {
+    "id": "2",
+    "fecha": "14/06/2024",
+    "hora": "16:05",
+    "producto": "Herramientas",
+    "descripcion": "Compras",
+    "agente": "Proovedor",
+    "nombre": "Dino",
+    "inicial": 20,
+    "entrada": 20,
+    "salida": 0,
+    "final": 40
+  }
+]

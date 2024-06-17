@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import data from "../data.json";
+import data from "../dataInventario.json";
 import { InventarioProps } from "../types/Modal.type";
 
 // Definimos el estado de la aplicación y las funciones que se van a utilizar

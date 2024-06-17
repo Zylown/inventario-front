@@ -10,6 +10,7 @@ export default {
         "verde-claro": "rgb(4,87,87)",
         "verde-oscuro": "rgb(4,67,67)",
         crema: "rgb(228,228,228)",
+        "crema-oscura": "rgb(200,200,200)",
       },
     },
   },

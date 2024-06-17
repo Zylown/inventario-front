@@ -5,7 +5,6 @@ import {
   SortingState,
   useReactTable,
 } from "@tanstack/react-table";
-// import data from "../../data.json";
 import { useEffect, useState, useMemo } from "react";
 import { ITableProps } from "../../types/Table.ts";
 import { InventarioProps } from "../../types/Modal.type";
