@@ -1,8 +1,3 @@
-export interface ITableProps {
-  searchTerm: string;
-  selectedField: string;
-}
-
 export interface KardexProps {
   id: string;
   fecha: string;
@@ -17,13 +12,13 @@ export interface KardexProps {
   final: number;
 }
 
-// export type InventarioProps = {
-//   id: string;
-//   categoria: string;
-//   producto: string;
-//   marca: string;
-//   estado: string;
-//   stock: number;
-//   precioC: number;
-//   precioV: number;
-// };
+export interface InventarioProps {
+  id: string;
+  categoria: string;
+  producto: string;
+  marca: string;
+  estado: string;
+  stock: number;
+  precioC: number;
+  precioV: number;
+}
