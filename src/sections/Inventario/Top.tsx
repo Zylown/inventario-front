@@ -2,14 +2,14 @@ import { useState } from "react";
 import { IoArrowBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import ModalAgregar from "./ModalAdd";
-import { useStore } from "../../context/store";
+import { useInventarioStore } from "../../context/InventarioStore";
 import { InventarioProps } from "../../types/Modal.type";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-  const products = useStore((state) => state.products); // Obtener productos del store
-  const addProduct = useStore((state) => state.addProduct); // es una función que se obtiene del store
+  const products = useInventarioStore((state) => state.products); // Obtener productos del store
+  const addProduct = useInventarioStore((state) => state.addProduct); // es una función que se obtiene del store
 
   const handleBack = () => {
     navigate("/");

@@ -1,30 +1,37 @@
 import { IoSearch, IoClose } from "react-icons/io5";
 import OptionsFilter from "../../components/OptionsFilter.tsx";
-import { FilterInputProps } from "../../types/FilterInput.ts";
+import { FilterInventarioProps } from "../../types/FilterInput.ts";
 
 export default function FilterInput({
   searchTerm,
   setSearchTerm,
   selectedField,
   setSelectedField,
-}: FilterInputProps) {
+}: FilterInventarioProps) {
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // [2] Crear función para actualizar el estado
-    setSearchTerm(e.target.value);
+    if (setSearchTerm) {
+      // si setSearchTerm existe
+      setSearchTerm(e.target.value); // esta función es para cambiar el valor del input y se lo asigna al estado
+    }
   };
 
   const handleClear = () => {
-    setSearchTerm("");
+    if (searchTerm && setSearchTerm) {
+      // si hay algo en el input se limpia
+      setSearchTerm("");
+    }
   };
 
   const handleFieldChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedField(e.target.value);
+    if (setSelectedField) {
+      //esta funcion es para cambiar el valor del select y se lo asigna al estado
+      setSelectedField(e.target.value);
+    }
   };
 
   return (
     <div className="flex py-2 sm:items-center items-stretch justify-between flex-wrap sm:flex-row flex-col sm:gap-0 gap-2">
-      {/* (sm:gap-0 gap-2) significa que en pantallas grandes(sm:gap-0) no habrá espacio entre los elementos, pero en pantallas pequeñas(gap-2) sí. la idea hasta sm se aplican sus elementos pero si es menos que sm ya el otro gap-2, se aplica esto hasta que sea
-      640px osea sm pasado eso ya lo otro*/}
+      {/* (sm:gap-0 gap-2) significa que en pantallas grandes(sm:gap-0) no habrá espacio entre los elementos, pero en pantallas pequeñas(gap-2) sí. la idea hasta sm se aplican sus elementos pero si es menos que sm ya el otro gap-2, se aplica esto hasta que sea 640px osea sm pasado eso ya lo otro*/}
       <div className="flex sm:flex-row flex-col w-full sm:gap-4 gap-6">
         <div className="flex flex-grow items-center sm:gap-9 gap-2">
           <div className="text-white font-semibold text-lg">

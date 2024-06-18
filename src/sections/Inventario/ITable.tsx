@@ -6,14 +6,17 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useEffect, useState, useMemo } from "react";
-import { ITableProps } from "../../types/Table.ts";
+import { FilterInventarioProps } from "../../types/FilterInput.ts";
 import { InventarioProps } from "../../types/Modal.type";
 import ModalEdit from "./ModalEdit";
-import { useStore } from "../../context/store.ts";
+import { useInventarioStore } from "../../context/InventarioStore.ts";
 
-export default function Table({ searchTerm, selectedField }: ITableProps) {
-  const products = useStore((state) => state.products); // Obtener productos del store
-  const editProduct = useStore((state) => state.editProduct); // Obtener función para editar producto del store
+export default function Table({
+  searchTerm,
+  selectedField,
+}: FilterInventarioProps) {
+  const products = useInventarioStore((state) => state.products); // Obtener productos del store
+  const editProduct = useInventarioStore((state) => state.editProduct); // Obtener función para editar producto del store
 
   const [inventario, setInventario] = useState<InventarioProps[]>([]);
   const [sorting, setSorting] = useState<SortingState>([]); // [1] Crear estado para el ordenamiento
