@@ -1,5 +1,14 @@
+import HomeLayout from "../../layout/HomeLayout";
+import DatosVentas from "../../sections/Ventas/DatosVentas";
+import TopVentas from "../../sections/Ventas/TopVentas";
+
 export default function Ventas() {
   return (
-    <div>index</div>
-  )
+    <HomeLayout>
+      <header className="flex flex-col gap-4">
+        <TopVentas />
+        <DatosVentas />
+      </header>
+    </HomeLayout>
+  );
 }
