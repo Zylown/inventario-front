@@ -10,7 +10,7 @@ type StoreState = {
 };
 
 // Creamos el store con Zustand y definimos el estado inicial
-export const useStore = create<StoreState>((set) => ({
+export const useInventarioStore = create<StoreState>((set) => ({
   products: data, // Inicializa con los datos del archivo JSON
   addProduct: (product) =>
     set((state) => ({
