@@ -5,9 +5,15 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { KardexProps } from "../../types/Table";
-import dataKardex from "../../dataKardex.json";
+import { useEffect, useMemo, useState } from "react";
+import { useKardexStore } from "../../context/KardexStore";
+import { FilterKardexProps } from "../../types/FilterInput";
+import { parse, format } from "date-fns";
 
-export default function KTable() {
+export default function KTable({ searchDate }: FilterKardexProps) {
+  const dataKardex = useKardexStore((state) => state.kardex);
+  const [kardex, setKardex] = useState<KardexProps[]>([]);
+
   const columnHelper = createColumnHelper<KardexProps>();
 
   const columns = [
@@ -57,11 +63,21 @@ export default function KTable() {
     }),
   ];
 
-  const table = useReactTable({
-    data: dataKardex,
-    columns,
-    getCoreRowModel: getCoreRowModel(), // es una función que se encarga de manejar los datos de la tabla
-  });
+  useEffect(() => {
+    setKardex(dataKardex);
+  }, [dataKardex]);
+
+  // Filtrar los datos por la fecha seleccionada
+  const filteredDate = useMemo(() => {
+    if (!searchDate) return kardex;
+    return kardex.filter((item) => {
+      const itemDate = format(
+        parse(item.fecha, "dd/MM/yyyy", new Date()),
+        "dd-MM-yyyy"
+      );
+      return itemDate === searchDate;
+    });
+  }, [searchDate, kardex]);
 
   const getRowClassName = (descripcion: string) => {
     if (descripcion.toLowerCase() === "venta") {
@@ -71,6 +87,13 @@ export default function KTable() {
     }
     return "";
   };
+
+  const table = useReactTable({
+    // data: kardex,
+    data: filteredDate,
+    columns,
+    getCoreRowModel: getCoreRowModel(), // es una función que se encarga de manejar los datos de la tabla
+  });
 
   return (
     <div className="pt-2 overflow-x-auto h-[70vh]">
