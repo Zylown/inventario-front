@@ -1,3 +1,4 @@
+import { MdAddShoppingCart } from "react-icons/md";
 import { IoArrowBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +17,15 @@ export default function TopVentas() {
         >
           <IoArrowBack />
           <span className="ml-0.5">Regresar</span>
+        </button>
+      </div>
+      <div className="flex">
+        <button
+          className="flex items-center hover:bg-verde-oscuro transition-all bg-verde-claro px-4 py-2 rounded-lg"
+          type="button"
+        >
+          <MdAddShoppingCart />
+          <span className="ml-0.5">Agregar Venta</span>
         </button>
       </div>
     </div>

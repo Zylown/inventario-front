@@ -1,6 +1,7 @@
 import HomeLayout from "../../layout/HomeLayout";
 import DatosVentas from "../../sections/Ventas/DatosVentas";
 import TopVentas from "../../sections/Ventas/TopVentas";
+import VTable from "../../sections/Ventas/VTable";
 
 export default function Ventas() {
   return (
@@ -8,6 +9,7 @@ export default function Ventas() {
       <header className="flex flex-col gap-4">
         <TopVentas />
         <DatosVentas />
+        <VTable />
       </header>
     </HomeLayout>
   );
