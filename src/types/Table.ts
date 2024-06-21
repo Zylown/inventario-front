@@ -1,3 +1,14 @@
+export interface InventarioProps {
+  id: string;
+  categoria: string;
+  producto: string;
+  marca: string;
+  estado: string;
+  stock: number;
+  precioC: number;
+  precioV: number;
+}
+
 export interface KardexProps {
   id: string;
   fecha: string;
@@ -12,13 +23,10 @@ export interface KardexProps {
   final: number;
 }
 
-export interface InventarioProps {
-  id: string;
-  categoria: string;
+export interface VentasProps {
+  num: string;
   producto: string;
-  marca: string;
-  estado: string;
-  stock: number;
-  precioC: number;
-  precioV: number;
+  precio: number;
+  cantidad: number;
+  total: number;
 }
