@@ -6,8 +6,8 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useEffect, useState, useMemo } from "react";
-import { FilterInventarioProps } from "../../types/FilterInput.ts";
-import { InventarioProps } from "../../types/Modal.type";
+import { FilterInventarioProps } from "../../types/Inventario.types.ts";
+import { InventarioProps } from "../../types/Inventario.types.ts";
 import ModalEdit from "./ModalEdit";
 import { useInventarioStore } from "../../context/InventarioStore.ts";
 

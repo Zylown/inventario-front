@@ -2,7 +2,7 @@ import { IoCloseCircle } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormAddSchema } from "../../validations/FormAdd.validate";
-import { InventarioProps, ModalProps } from "../../types/Modal.type";
+import { InventarioProps, ModalProps } from "../../types/Inventario.types";
 import { useEffect } from "react";
 
 export default function ModalEdit({
@@ -29,11 +29,16 @@ export default function ModalEdit({
 
   const onSubmit = (data: InventarioProps) => {
     console.log("Data to edit:", data);
-    const updatedData = {
-      ...data,
-      id: initialData.id, // Mantener el ID original del producto
-    };
-    onEdit(updatedData);
+    if (initialData) {
+      const updatedData = {
+        ...data,
+        id: initialData.id, // Mantener el ID original del producto
+      };
+      if (onEdit) {
+        onEdit(updatedData);
+      }
+    }
+
     onClose();
   };
 

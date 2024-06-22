@@ -1,6 +1,6 @@
 import { IoSearch, IoClose } from "react-icons/io5";
 import OptionsFilter from "../../components/OptionsFilter.tsx";
-import { FilterInventarioProps } from "../../types/FilterInput.ts";
+import { FilterInventarioProps } from "../../types/Inventario.types.ts";
 
 export default function FilterInput({
   searchTerm,

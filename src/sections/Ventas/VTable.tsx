@@ -4,7 +4,7 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { VentasProps } from "../../types/Table";
+import { VentasProps } from "../../types/Ventas.types";
 import { MdAddShoppingCart } from "react-icons/md";
 
 export default function VTable() {
@@ -65,21 +65,11 @@ export default function VTable() {
                       key={column.id}
                       className="px-4 py-2 text-center md:text-base text-sm"
                     >
-                      <div
-                        {...{
-                          className: column.column.getCanSort()
-                            ? "cursor-pointer select-none"
-                            : "",
-                          onClick: column.column.getToggleSortingHandler(),
-                        }}
-                      >
+                      <div>
                         {flexRender(
                           column.column.columnDef.header,
                           column.getContext()
                         )}
-                        {{ asc: " ↑", desc: " ↓" }[
-                          column.column.getIsSorted() as string
-                        ] ?? null}
                       </div>
                     </th>
                   ))}

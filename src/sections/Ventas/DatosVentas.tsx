@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { DatosVentasProps } from "../../types/DatosVentas.types";
+import { DatosVentasProps } from "../../types/Ventas.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProductoSchema } from "../../validations/FormProducto.validate";
 
@@ -11,6 +11,10 @@ export default function DatosVentas() {
   } = useForm<DatosVentasProps>({
     resolver: zodResolver(FormProductoSchema),
   });
+
+  const onSubmit = async (data: DatosVentasProps) => {
+    console.log(data);
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -24,20 +28,18 @@ export default function DatosVentas() {
           className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
         />
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-4 items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-4 lg:items-center">
         <label className="text-white font-semibold text-lg text-nowrap">
           Datos Producto
         </label>
         <form
-          onSubmit={handleSubmit((data) => {
-            console.log(data);
-          })}
+          onSubmit={handleSubmit(onSubmit)}
           className="flex lg:flex-row flex-col gap-4 w-full"
         >
           <input
             type="number"
             placeholder="ID"
-            className={`w-full lg:max-w-[100px] bg-crema hover:bg-crema-oscura p-2 rounded-lg outline-none transition-all ${
+            className={`w-full lg:max-w-[100px] bg-crema p-2 rounded-lg outline-none transition-all ${
               errors.idProducto ? "border-2 border-red-500" : ""
             }`}
             {...register("idProducto")}
@@ -45,21 +47,24 @@ export default function DatosVentas() {
           <input
             type="text"
             placeholder="Nombre del producto"
-            className="w-full p-2 bg-crema rounded-lg outline-none transition-all opacity-80"
+            className={`w-full p-2 bg-crema rounded-lg outline-none transition-all opacity-80
+              ${errors.nombreProducto ? "border-2 border-red-500" : ""}`}
             // disabled
             {...register("nombreProducto")}
           />
           <input
             type="text"
             placeholder="Precio del producto"
-            className="w-full p-2 bg-crema rounded-lg outline-none transition-all opacity-80"
+            className={`w-full p-2 lg:max-w-[180px] bg-crema rounded-lg opacity-80 outline-none transition-all
+              ${errors.precioProducto ? "border-2 border-red-500" : ""}`}
             // disabled
             {...register("precioProducto")}
           />
           <input
             type="number"
             placeholder="Cantidad del producto"
-            className="w-full p-2 lg:max-w-[180px] bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
+            className={`w-full lg:max-w-[180px] bg-crema p-2 rounded-lg outline-none transition-all
+              ${errors.cantidadProducto ? "border-2 border-red-500" : ""}`}
             {...register("cantidadProducto")}
           />
           <button

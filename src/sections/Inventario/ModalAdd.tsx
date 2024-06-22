@@ -1,10 +1,10 @@
 import { IoCloseCircle } from "react-icons/io5";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { InventarioProps } from "../../types/Modal.type";
+import { InventarioProps } from "../../types/Inventario.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormAddSchema } from "../../validations/FormAdd.validate";
-import { ModalProps } from "../../types/Top";
+import { ModalProps } from "../../types/Inventario.types";
 
 export default function ModalAgregar({
   isVisible,
@@ -26,9 +26,15 @@ ModalProps) {
 
   const onSubmit = async (data: InventarioProps) => {
     console.log(data);
-    onAdd(data);
-    reset();
-    onClose();
+    if (onAdd) {
+      onAdd(data);
+    }
+    if (reset) {
+      reset();
+    }
+    if (onClose) {
+      onClose();
+    }
   };
 
   const handleChangeCheckBox = () => {

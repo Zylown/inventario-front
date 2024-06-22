@@ -4,10 +4,10 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { KardexProps } from "../../types/Table";
+import { KardexProps } from "../../types/Kardex.types";
 import { useEffect, useMemo, useState } from "react";
 import { useKardexStore } from "../../context/KardexStore";
-import { FilterKardexProps } from "../../types/FilterInput";
+import { FilterKardexProps } from "../../types/Kardex.types";
 import { parse, format } from "date-fns";
 
 export default function KTable({ searchDate }: FilterKardexProps) {

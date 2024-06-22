@@ -3,7 +3,7 @@ import { TbCalendarSearch } from "react-icons/tb";
 import { es } from "date-fns/locale";
 import { format, parse } from "date-fns";
 import "react-datepicker/dist/react-datepicker.css";
-import { FilterKardexProps } from "../../types/FilterInput";
+import { FilterKardexProps } from "../../types/Kardex.types";
 import { IoClose } from "react-icons/io5";
 
 const locale = es;

@@ -3,7 +3,7 @@ import { IoArrowBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import ModalAgregar from "./ModalAdd";
 import { useInventarioStore } from "../../context/InventarioStore";
-import { InventarioProps } from "../../types/Modal.type";
+import { InventarioProps } from "../../types/Inventario.types";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
