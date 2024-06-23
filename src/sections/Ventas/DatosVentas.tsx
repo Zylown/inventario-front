@@ -1,19 +1,28 @@
 import { useForm } from "react-hook-form";
-import { DatosVentasProps } from "../../types/Ventas.types";
+import { FormDatosProps } from "../../types/Ventas.types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProductoSchema } from "../../validations/FormProducto.validate";
 
-export default function DatosVentas() {
+export default function DatosVentas({
+  onAdd,
+}: {
+  onAdd: (data: FormDatosProps) => void;
+}) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm<DatosVentasProps>({
+  } = useForm<FormDatosProps>({
     resolver: zodResolver(FormProductoSchema),
   });
 
-  const onSubmit = async (data: DatosVentasProps) => {
+  const onSubmit = async (data: FormDatosProps) => {
     console.log(data);
+    if (onAdd) {
+      onAdd(data);
+      reset();
+    }
   };
 
   return (

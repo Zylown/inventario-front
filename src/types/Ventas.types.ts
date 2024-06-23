@@ -1,5 +1,4 @@
-export type DatosVentasProps = {
-  //   nombreCliente: string;
+export type FormDatosProps = {
   idProducto: number;
   nombreProducto: string;
   precioProducto: string;
@@ -7,9 +6,9 @@ export type DatosVentasProps = {
 };
 
 export interface VentasProps {
-  num: string;
-  producto: string;
-  precio: number;
-  cantidad: number;
+  numeroProducto: number;
+  nombreProducto: string;
+  precioProducto: number;
+  cantidadProducto: number;
   total: number;
 }

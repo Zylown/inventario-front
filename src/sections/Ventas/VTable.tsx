@@ -6,24 +6,29 @@ import {
 } from "@tanstack/react-table";
 import { VentasProps } from "../../types/Ventas.types";
 import { MdAddShoppingCart } from "react-icons/md";
+import { useEffect, useState } from "react";
+import { useVentasStore } from "../../context/VentasStore";
 
 export default function VTable() {
+  const ventas = useVentasStore((state) => state.ventas);
+
+  const [dataVentas, setDataVentas] = useState<VentasProps[]>([]);
   const columnHelper = createColumnHelper<VentasProps>();
 
   const columns = [
-    columnHelper.accessor("num", {
+    columnHelper.accessor("numeroProducto", {
       header: () => "NRO",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("producto", {
+    columnHelper.accessor("nombreProducto", {
       header: () => "Producto",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("precio", {
+    columnHelper.accessor("precioProducto", {
       header: () => "Precio",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("cantidad", {
+    columnHelper.accessor("cantidadProducto", {
       header: () => "Cantidad",
       cell: (info) => info.getValue(),
     }),
@@ -33,8 +38,13 @@ export default function VTable() {
     }),
   ];
 
+  useEffect(() => {
+    setDataVentas(ventas);
+    console.log("Ventas:", ventas);
+  }, [ventas]);
+
   const table = useReactTable({
-    data: [],
+    data: dataVentas,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });

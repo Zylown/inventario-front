@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { VentasProps } from "../types/Kardex.types";
+import { VentasProps } from "../types/Ventas.types";
 
 type StoreState = {
   ventas: VentasProps[];
