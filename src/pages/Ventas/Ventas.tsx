@@ -1,4 +1,4 @@
-import HomeLayout from "../../layout/HomeLayout";
+import HomeLayout from "../../Layout/HomeLayout";
 import DatosVentas from "../../sections/Ventas/DatosVentas";
 import TopVentas from "../../sections/Ventas/TopVentas";
 import VTable from "../../sections/Ventas/VTable";

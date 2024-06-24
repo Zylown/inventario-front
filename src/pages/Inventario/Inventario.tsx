@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HomeLayout from "../../layout/HomeLayout";
+import HomeLayout from "../../Layout/HomeLayout";
 import FilterInput from "../../sections/Inventario/FilterInput";
 import Table from "../../sections/Inventario/ITable";
 import Top from "../../sections/Inventario/Top";
