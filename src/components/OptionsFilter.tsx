@@ -1,4 +1,4 @@
-import { inventario } from "../types/Kardex.types";
+import { InventarioProps } from "../types/Inventario.types";
 
 export default function OptionsFilter() {
   const inventarioKeys = Object.keys({
@@ -10,7 +10,7 @@ export default function OptionsFilter() {
     stock: 0,
     precioC: 0,
     precioV: 0,
-  } as inventario);
+  } as InventarioProps);
 
   return (
     <>

@@ -6,7 +6,7 @@ export type FormDatosProps = {
 };
 
 export interface VentasProps {
-  nombreCliente: string;
+  nombreCliente?: string;
   numeroVentaProducto: number;
   nombreVentaProducto: string;
   precioVentaProducto: number;
