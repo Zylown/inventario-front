@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Kardex from "./pages/Kardex";
-import Inventario from "./pages/Inventario";
-import Ventas from "./pages/Ventas";
+import Kardex from "./pages/Kardex/Kardex";
+import Inventario from "./pages/Inventario/Inventario";
+import Ventas from "./pages/Ventas/Ventas";
 function App() {
   return (
     <>
