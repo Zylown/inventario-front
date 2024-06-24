@@ -1,5 +1,5 @@
 import { useState } from "react";
-import HomeLayout from "../../layout/HomeLayout";
+import HomeLayout from "./../../layout/HomeLayout";
 import KTable from "../../sections/Kardex/KTable";
 import SearchInput from "../../sections/Kardex/SearchInput";
 import TopKardex from "../../sections/Kardex/TopKardex";
