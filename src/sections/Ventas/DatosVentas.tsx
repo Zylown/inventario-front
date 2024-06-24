@@ -25,6 +25,11 @@ export default function DatosVentas({
     }
   };
 
+  const handleNameClient = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.target.value);
+    // nameClient = e.target.value;
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <div className="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-4 items-center">
@@ -35,6 +40,7 @@ export default function DatosVentas({
           type="text"
           placeholder="Nombre del cliente"
           className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
+          onChange={handleNameClient}
         />
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-[150px_1fr] gap-4 lg:items-center">

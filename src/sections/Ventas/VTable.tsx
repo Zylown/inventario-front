@@ -8,39 +8,52 @@ import { VentasProps } from "../../types/Ventas.types";
 import { MdAddShoppingCart } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { useVentasStore } from "../../context/VentasStore";
+import { MdDelete } from "react-icons/md";
+import PrintVenta from "./PrintVenta";
 
 export default function VTable() {
+  // Obtener ventas y función para eliminar desde el store
   const ventas = useVentasStore((state) => state.ventas);
+  const removeVenta = useVentasStore((state) => state.removeVenta);
 
+  // Estados
   const [dataVentas, setDataVentas] = useState<VentasProps[]>([]);
+  const [mostrarPrintModal, setMostrarPrintModal] = useState(false);
   const columnHelper = createColumnHelper<VentasProps>();
 
   const columns = [
-    columnHelper.accessor("numeroProducto", {
+    columnHelper.accessor("numeroVentaProducto", {
       header: () => "NRO",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("nombreProducto", {
+    columnHelper.accessor("nombreVentaProducto", {
       header: () => "Producto",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("precioProducto", {
+    columnHelper.accessor("precioVentaProducto", {
       header: () => "Precio",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("cantidadProducto", {
+    columnHelper.accessor("cantidadVentaProducto", {
       header: () => "Cantidad",
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("total", {
       header: () => "Total",
-      cell: (info) => info.getValue(),
+      cell: (info) => (
+        <div className="flex items-center justify-center relative">
+          <span>{info.getValue()}</span>
+          <MdDelete
+            className="absolute right-0 cursor-pointer hover:text-red-500 transition-all text-xl"
+            onClick={() => removeVenta(info.row.original.numeroVentaProducto)} // Lógica de eliminar
+          />
+        </div>
+      ),
     }),
   ];
 
   useEffect(() => {
     setDataVentas(ventas);
-    console.log("Ventas:", ventas);
   }, [ventas]);
 
   const table = useReactTable({
@@ -110,14 +123,25 @@ export default function VTable() {
         </div>
         <div className="mt-4 flex justify-end text-white font-semibold">
           <button
-            className="flex items-center hover:bg-verde-oscuro transition-all bg-verde-claro px-4 py-2 rounded-lg"
+            className={`flex items-center 
+            ${
+              dataVentas.length === 0
+                ? "cursor-not-allowed opacity-80"
+                : "hover:bg-verde-oscuro"
+            }
+               transition-all bg-verde-claro px-4 py-2 rounded-lg`}
             type="button"
+            onClick={() => setMostrarPrintModal(true)}
+            disabled={dataVentas.length === 0}
           >
             <MdAddShoppingCart />
             <span className="ml-0.5">Generar Venta</span>
           </button>
         </div>
       </div>
+      {mostrarPrintModal && (
+        <PrintVenta handleCloseModal={() => setMostrarPrintModal(false)} />
+      )}
     </>
   );
 }

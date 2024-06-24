@@ -6,9 +6,15 @@ export type FormDatosProps = {
 };
 
 export interface VentasProps {
-  numeroProducto: number;
-  nombreProducto: string;
-  precioProducto: number;
-  cantidadProducto: number;
+  nombreCliente: string;
+  numeroVentaProducto: number;
+  nombreVentaProducto: string;
+  precioVentaProducto: number;
+  cantidadVentaProducto: number;
   total: number;
+  // pagoTotal: number;
+}
+
+export interface DocPrintProps {
+  handleCloseModal?: () => void;
 }

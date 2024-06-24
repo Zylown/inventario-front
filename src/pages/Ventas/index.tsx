@@ -13,10 +13,10 @@ export default function Ventas() {
   const handleAddVenta = (data: FormDatosProps) => {
     const total = parseFloat(data.precioProducto) * data.cantidadProducto; // Asegúrate de convertir precioProducto a número
     const venta: VentasProps = {
-      numeroProducto: numeroProducto, // Utiliza el estado del contador
-      nombreProducto: data.nombreProducto,
-      precioProducto: parseFloat(data.precioProducto), // Convertir a número
-      cantidadProducto: data.cantidadProducto,
+      numeroVentaProducto: numeroProducto, // Utiliza el estado del contador
+      nombreVentaProducto: data.nombreProducto,
+      precioVentaProducto: parseFloat(data.precioProducto), // Convertir a número
+      cantidadVentaProducto: data.cantidadProducto,
       total,
     };
     addVenta(venta);

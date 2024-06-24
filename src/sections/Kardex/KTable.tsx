@@ -17,10 +17,10 @@ export default function KTable({ searchDate }: FilterKardexProps) {
   const columnHelper = createColumnHelper<KardexProps>();
 
   const columns = [
-    columnHelper.accessor("id", {
-      header: () => "ID",
-      cell: (info) => info.getValue(),
-    }),
+    // columnHelper.accessor("id", {
+    //   header: () => "ID",
+    //   cell: (info) => info.getValue(),
+    // }),
     columnHelper.accessor("fecha", {
       header: () => "Fecha",
       cell: (info) => info.getValue(),
