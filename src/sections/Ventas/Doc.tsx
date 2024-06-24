@@ -1,5 +1,18 @@
 import { Page, Text, StyleSheet, Document, View } from "@react-pdf/renderer";
 
+type Venta = {
+  cantidadVentaProducto: number;
+  nombreVentaProducto: string;
+  precioVentaProducto: number;
+  total: number;
+};
+
+interface DocProps {
+  data: Venta[];
+  pagoTotal: number;
+  simple?: boolean;
+}
+
 const styles = StyleSheet.create({
   page: {
     padding: 10,
@@ -34,7 +47,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function Doc({ data, pagoTotal, simple = false }) {
+export default function Doc({ data, pagoTotal, simple = false }: DocProps) {
   const now = new Date();
 
   // Crear un array con los nombres de los días de la semana
