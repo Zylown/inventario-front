@@ -1,7 +1,7 @@
 import { create } from "zustand";
 // import data from "../dataInventario.json";
 import { InventarioProps } from "../types/Inventario.types";
-import { fetchInventario } from "../api/fetchInventario";
+import { getInventario } from "../api/fetchInventario";
 
 // Definimos el estado de la aplicación y las funciones que se van a utilizar
 type StoreState = {
@@ -10,8 +10,8 @@ type StoreState = {
   editProduct: (product: InventarioProps) => void;
 };
 
-// fetchInventario().then((data) => console.log("Data fetched:", data));
-const initialData: InventarioProps[] = await fetchInventario();
+// getInventario().then((data) => console.log("Data fetched:", data));
+const initialData: InventarioProps[] = await getInventario();
 
 // Creamos el store con Zustand y definimos el estado inicial
 export const useInventarioStore = create<StoreState>((set) => ({
