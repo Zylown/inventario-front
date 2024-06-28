@@ -1,6 +1,7 @@
 import { create } from "zustand";
-import data from "../dataInventario.json";
+// import data from "../dataInventario.json";
 import { InventarioProps } from "../types/Inventario.types";
+import { fetchInventario } from "../api/fetchInventario";
 
 // Definimos el estado de la aplicación y las funciones que se van a utilizar
 type StoreState = {
@@ -9,16 +10,18 @@ type StoreState = {
   editProduct: (product: InventarioProps) => void;
 };
 
+// fetchInventario().then((data) => console.log("Data fetched:", data));
+const initialData: InventarioProps[] = await fetchInventario();
+
 // Creamos el store con Zustand y definimos el estado inicial
 export const useInventarioStore = create<StoreState>((set) => ({
-  products: data, // Inicializa con los datos del archivo JSON
+  products: initialData, // Inicializa con los datos del archivo JSON
   addProduct: (product) =>
     set((state) => ({
       products: [...state.products, product], // 1ro copia los productos actuales y luego añade el nuevo producto
     })),
   editProduct: (editProduct) =>
     set((state) => {
-
       // Usamos map para crear una nueva lista de productos con el producto editado
       const updatedProducts = state.products.map((p) => {
         if (String(p.id) === String(editProduct.id)) {
