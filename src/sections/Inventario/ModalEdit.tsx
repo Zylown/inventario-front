@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormAddSchema } from "../../validations/FormAdd.validate";
 import { InventarioProps, ModalProps } from "../../types/Inventario.types";
 import { useEffect } from "react";
+import axios from "axios";
 
 export default function ModalEdit({
   isVisible,
@@ -27,15 +28,24 @@ export default function ModalEdit({
 
   if (!isVisible) return null;
 
-  const onSubmit = (data: InventarioProps) => {
+  const onSubmit = async (data: InventarioProps) => {
     console.log("Data to edit:", data);
     if (initialData) {
       const updatedData = {
         ...data,
         id: initialData.id, // Mantener el ID original del producto
       };
-      if (onEdit) {
-        onEdit(updatedData);
+      try {
+        const response = await axios.put(
+          `http://localhost:3000/inventario/${initialData.id}`,
+          updatedData
+        );
+        console.log("Edit response:", response.data);
+        if (onEdit) {
+          onEdit(response.data);
+        }
+      } catch (error) {
+        console.error("Error editing product:", error);
       }
     }
 

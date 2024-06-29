@@ -24,3 +24,14 @@ export const addInventario = async (data: InventarioProps) => {
     console.error(error);
   }
 };
+
+//PUT /inventario/:id
+export const editInventario = async (id: number, data: InventarioProps) => {
+  try {
+    const response = await axios.put(`${BASE_URL}/inventario/${id}`, data);
+    // console.log("Data edited:", response.data)
+    return response.data;
+  } catch (error) {
+    console.error(error);
+  }
+};

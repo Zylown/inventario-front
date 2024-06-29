@@ -4,24 +4,26 @@ import { useNavigate } from "react-router-dom";
 import ModalAgregar from "./ModalAdd";
 import { useInventarioStore } from "../../context/InventarioStore";
 import { InventarioProps } from "../../types/Inventario.types";
+import { addInventario } from "../../api/fetchInventario";
 
 export default function Top() {
   const [isVisible, setIsVisible] = useState(false);
   const navigate = useNavigate();
-  const products = useInventarioStore((state) => state.products); // Obtener productos del store
   const addProduct = useInventarioStore((state) => state.addProduct); // es una función que se obtiene del store
 
   const handleBack = () => {
     navigate("/");
   };
 
-  const handleAdd = (product: InventarioProps) => {
-    const maxId = products.reduce(
-      (max, product) => Math.max(max, parseInt(product.id.toString(), 10)),
-      0
-    );
-    const newProduct = { ...product, id: (maxId + 1).toString() };
-    addProduct(newProduct);
+  const handleAdd = async (product: InventarioProps) => {
+    try {
+      // aca llama a la peticion post para agregar un producto a la base de datos
+      const addedProduct = await addInventario(product);
+      // aca guardamos en el store el producto que se agregó a la base de datos
+      addProduct(addedProduct);
+    } catch (error) {
+      console.error("Error adding product:", error);
+    }
   };
 
   return (
