@@ -10,28 +10,28 @@ type StoreState = {
   editProduct: (product: InventarioProps) => void;
 };
 
-// getInventario().then((data) => console.log("Data fetched:", data));
-const initialData: InventarioProps[] = await getInventario();
+const initializeStore = async () => {
+  const initialData: InventarioProps[] = await getInventario();
 
-// Creamos el store con Zustand y definimos el estado inicial
-export const useInventarioStore = create<StoreState>((set) => ({
-  products: initialData, // Inicializa con los datos del archivo JSON
-  addProduct: (product) =>
-    set((state) => ({
-      products: [...state.products, product], // 1ro copia los productos actuales y luego añade el nuevo producto
-    })),
-  editProduct: (editProduct) =>
-    set((state) => {
-      // Usamos map para crear una nueva lista de productos con el producto editado
-      const updatedProducts = state.products.map((p) => {
-        if (String(p.id) === String(editProduct.id)) {
-          // Convertir ambos a cadena para una comparación consistente
-          return editProduct;
-        }
-        return p;
-      });
-      return {
-        products: updatedProducts,
-      };
-    }),
-}));
+  return create<StoreState>((set) => ({
+    products: initialData,
+    addProduct: (product) =>
+      set((state) => ({
+        products: [...state.products, product],
+      })),
+    editProduct: (editProduct) =>
+      set((state) => {
+        const updatedProducts = state.products.map((p) => {
+          if (String(p.id) === String(editProduct.id)) {
+            return editProduct;
+          }
+          return p;
+        });
+        return {
+          products: updatedProducts,
+        };
+      }),
+  }));
+};
+
+export const useInventarioStore = await initializeStore();
