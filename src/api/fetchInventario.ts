@@ -12,6 +12,7 @@ export const getInventario = async () => {
     return response.data;
   } catch (error) {
     console.error(error);
+    return [];
   }
 };
 
@@ -24,6 +25,7 @@ export const addInventario = async (data: InventarioProps) => {
     return response.data;
   } catch (error) {
     console.error(error);
+    return null; // Devuelve null en caso de error
   }
 };
 
@@ -36,5 +38,6 @@ export const editInventario = async (id: number, data: InventarioProps) => {
     return response.data;
   } catch (error) {
     console.error(error);
+    return null; // Devuelve null en caso de error
   }
 };
