@@ -55,7 +55,7 @@ export default function ModalEdit({
 
   return (
     <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-verde-claro w-5/12 p-4 rounded-lg flex flex-col items-center relative">
+      <div className="bg-verde-claro sm:w-5/12 w-full mx-2 p-4 rounded-lg flex flex-col items-center relative">
         <button
           type="button"
           className="hover:bg-verde-oscuro transition-all text-2xl rounded-lg absolute right-2 top-2"
