@@ -16,7 +16,6 @@ export default function SearchInput({
   const handleDateChange = (date: Date | null) => {
     if (date && setSearchDate) {
       setSearchDate(format(date, "dd-MM-yyyy"));
-      console.log(format(date, "dd-MM-yyyy")); // Formatear la fecha cuando se cambia
     }
   };
 

@@ -61,7 +61,7 @@ export default function Table({
 
   useEffect(() => {
     setInventario(products); // Inicializa el inventario con los productos del store
-    console.log("Products updated:", products);
+    // console.log("Products updated:", products);
   }, [products]);
 
   const handleRowClick = (row: InventarioProps) => {

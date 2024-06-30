@@ -18,7 +18,7 @@ export default function DatosVentas({
   });
 
   const onSubmit = async (data: FormDatosProps) => {
-    console.log(data);
+    // console.log(data);
     if (onAdd) {
       onAdd(data);
       reset();

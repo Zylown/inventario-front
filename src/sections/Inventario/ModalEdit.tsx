@@ -21,6 +21,7 @@ export default function ModalEdit({
     resolver: zodResolver(FormAddSchema),
     defaultValues: initialData,
   });
+  const BASE_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
     isVisible && reset(initialData);
@@ -29,7 +30,7 @@ export default function ModalEdit({
   if (!isVisible) return null;
 
   const onSubmit = async (data: InventarioProps) => {
-    console.log("Data to edit:", data);
+    // console.log("Data to edit:", data);
     if (initialData) {
       const updatedData = {
         ...data,
@@ -37,7 +38,7 @@ export default function ModalEdit({
       };
       try {
         const response = await axios.put(
-          `http://localhost:3000/inventario/${initialData.id}`,
+          `${BASE_URL}/inventario/${initialData.id}`,
           updatedData
         );
         console.log("Edit response:", response.data);

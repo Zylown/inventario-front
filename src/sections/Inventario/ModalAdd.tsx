@@ -25,7 +25,7 @@ ModalProps) {
   if (!isVisible) return null; // esto significa que si isVisible es false, no se muestra nada
 
   const onSubmit = async (data: InventarioProps) => {
-    console.log(data);
+    // console.log(data);
     if (onAdd) {
       onAdd(data);
     }
