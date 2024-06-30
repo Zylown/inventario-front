@@ -9,7 +9,6 @@ type StoreState = {
   editProduct: (product: InventarioProps) => void;
 };
 
-// Crea la tienda inicialmente con productos vacíos
 export const useInventarioStore = create<StoreState>((set) => ({
   products: [],
   setProducts: (products) => set({ products }),
@@ -31,9 +30,13 @@ export const useInventarioStore = create<StoreState>((set) => ({
 
 // Inicializa la tienda de manera asíncrona
 const initializeStore = async () => {
-  const initialData: InventarioProps[] = await getInventario();
-  const { setProducts } = useInventarioStore.getState();
-  setProducts(initialData);
+  try {
+    const initialData: InventarioProps[] = await getInventario();
+    const { setProducts } = useInventarioStore.getState();
+    setProducts(initialData);
+  } catch (error) {
+    console.error("Failed to initialize store:", error);
+  }
 };
 
 initializeStore();
