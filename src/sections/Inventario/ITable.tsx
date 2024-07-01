@@ -10,6 +10,11 @@ import { FilterInventarioProps } from "../../types/Inventario.types.ts";
 import { InventarioProps } from "../../types/Inventario.types.ts";
 import ModalEdit from "./ModalEdit";
 import { useInventarioStore } from "../../context/InventarioStore.ts";
+import { io } from "socket.io-client";
+
+const socket = io(import.meta.env.VITE_API_URL, {
+  transports: ["websocket", "polling"],
+});
 
 export default function Table({
   searchTerm,
@@ -41,8 +46,8 @@ export default function Table({
       header: () => "Marca",
       cell: (info) => info.getValue(),
     }),
-    columnHelper.accessor("estado", {
-      header: () => "Estado",
+    columnHelper.accessor("tamanio", {
+      header: () => "Tamaño",
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("stock", {
@@ -63,6 +68,17 @@ export default function Table({
     setInventario(products); // Inicializa el inventario con los productos del store
     // console.log("Products updated:", products);
   }, [products]);
+
+  // Escuchar eventos de actualización de inventario
+  useEffect(() => {
+    socket.on("inventoryUpdated", (updatedProducts: InventarioProps[]) => {
+      setInventario(updatedProducts);
+    });
+
+    return () => {
+      socket.off("inventoryUpdated");
+    };
+  }, []);
 
   const handleRowClick = (row: InventarioProps) => {
     setEditingRow(row);
