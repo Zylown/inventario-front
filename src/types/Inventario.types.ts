@@ -18,7 +18,7 @@ export interface InventarioProps {
   categoria: string;
   producto: string;
   marca: string;
-  estado: string;
+  tamanio: string;
   stock: number;
   precioC: number;
   precioV: number;

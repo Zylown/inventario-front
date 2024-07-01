@@ -10,7 +10,7 @@ export const FormAddSchema = z.object({
   marca: z
     .string()
     .nonempty({ message: "La marca del producto no puede estar vacía" }),
-  estado: z.string(),
+  tamanio: z.string(),
   stock: z.coerce.number({ invalid_type_error: "El monto debe ser un número" }),
   precioC: z.coerce
     .number({ invalid_type_error: "El monto debe ser un número" })

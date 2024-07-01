@@ -106,13 +106,12 @@ ModalProps) {
           {errors.marca && (
             <p className="text-red-500">{"* " + errors.marca.message}</p>
           )}
-          <select
+          <input
             className="p-2 w-full bg-crema rounded-lg"
-            {...register("estado")}
-          >
-            <option value="ACTIVO">ACTIVO</option>
-            <option value="INACTIVO">INACTIVO</option>
-          </select>
+            type="text"
+            placeholder="Tamaño"
+            {...register("tamanio")}
+          />
           <input
             type="text"
             className="p-2 w-full bg-crema rounded-lg"

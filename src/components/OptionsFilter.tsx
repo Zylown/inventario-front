@@ -6,7 +6,7 @@ export default function OptionsFilter() {
     producto: "",
     categoria: "",
     marca: "",
-    estado: "",
+    tamanio: "",
     stock: 0,
     precioC: 0,
     precioV: 0,
