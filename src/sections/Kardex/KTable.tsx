@@ -9,6 +9,11 @@ import { useEffect, useMemo, useState } from "react";
 import { useKardexStore } from "../../context/KardexStore";
 import { FilterKardexProps } from "../../types/Kardex.types";
 import { parse, format } from "date-fns";
+import { io } from "socket.io-client";
+
+const socket = io(import.meta.env.VITE_API_URL, {
+  transports: ["websocket", "polling"],
+});
 
 export default function KTable({ searchDate }: FilterKardexProps) {
   const dataKardex = useKardexStore((state) => state.kardex);
@@ -66,6 +71,20 @@ export default function KTable({ searchDate }: FilterKardexProps) {
   useEffect(() => {
     setKardex(dataKardex);
   }, [dataKardex]);
+
+  useEffect(() => {
+    socket.on("updateKardex", (updatedKardex: KardexProps) => {
+      setKardex((prevKardex) =>
+        prevKardex.map((item) =>
+          item.id === updatedKardex.id ? updatedKardex : item
+        )
+      );
+    });
+
+    return () => {
+      socket.off("updateKardex");
+    };
+  }, []);
 
   // Filtrar los datos por la fecha seleccionada
   const filteredDate = useMemo(() => {
