@@ -66,17 +66,22 @@ export default function Table({
 
   useEffect(() => {
     setInventario(products); // Inicializa el inventario con los productos del store
-    // console.log("Products updated:", products);
   }, [products]);
 
   // Escuchar eventos de actualización de inventario
   useEffect(() => {
-    socket.on("inventoryUpdated", (updatedProducts: InventarioProps[]) => {
-      setInventario(updatedProducts);
+    socket.on("updateInventory", (updatedProduct: InventarioProps) => {
+
+      // Actualiza el estado del inventario
+      setInventario((prevInventario) =>
+        prevInventario.map((product) =>
+          product.id === updatedProduct.id ? updatedProduct : product
+        )
+      );
     });
 
     return () => {
-      socket.off("inventoryUpdated");
+      socket.off("updateInventory");
     };
   }, []);
 

@@ -95,8 +95,6 @@ export default function KTable({ searchDate }: FilterKardexProps) {
     getCoreRowModel: getCoreRowModel(), // es una función que se encarga de manejar los datos de la tabla
   });
 
-  console.log("Table Rows:", table.getRowModel().rows); // Añadir un log para verificar las filas de la tabla
-
   return (
     <div className="pt-2 overflow-x-auto h-[70vh]">
       <table className="min-w-full border-collapse">

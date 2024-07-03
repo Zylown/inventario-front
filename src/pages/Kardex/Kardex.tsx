@@ -6,7 +6,6 @@ import TopKardex from "../../sections/Kardex/TopKardex";
 
 export default function Kardex() {
   const [searchDate, setSearchDate] = useState<string>("");
-  console.log(searchDate);
   return (
     <HomeLayout>
       <header className="flex flex-col gap-4">
