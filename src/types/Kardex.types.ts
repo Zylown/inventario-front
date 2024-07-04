@@ -16,3 +16,8 @@ export interface FilterKardexProps {
   searchDate: string;
   setSearchDate?: (date: string) => void;
 }
+
+export type ModalPropsKardex = {
+  isVisible: boolean;
+  onClose: () => void;
+};
