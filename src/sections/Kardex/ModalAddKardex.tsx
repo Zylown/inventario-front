@@ -60,8 +60,8 @@ export default function ModalAddKardex({
     : null;
 
   return isVisible ? (
-    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-verde-claro sm:w-5/12 w-full mx-2 p-4 rounded-lg flex flex-col items-center relative">
+    <div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50 p-4">
+      <div className="bg-verde-claro sm:w-6/12 w-full mx-2 p-4 rounded-lg flex flex-col items-center relative space-y-4">
         <button
           type="button"
           className="hover:bg-verde-oscuro transition-all text-2xl rounded-lg absolute right-2 top-2"
@@ -69,8 +69,8 @@ export default function ModalAddKardex({
         >
           <IoCloseCircle />
         </button>
-        <h1 className="font-semibold text-white text-center mb-4">
-          Agregar producto
+        <h1 className="font-semibold text-white text-center mb-2">
+          Agregar movimiento
         </h1>
         <form
           className="w-full flex flex-col gap-4"
@@ -170,12 +170,12 @@ export default function ModalAddKardex({
               className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
               {...control.register("salida")}
             />
-            <input
+            {/* <input
               type="number"
               placeholder="Stock final"
               className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
               {...control.register("final")}
-            />
+            /> */}
           </div>
           <button
             type="submit"
