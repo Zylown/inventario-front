@@ -1,5 +1,5 @@
 import axios from "axios";
-import { KardexProps } from "src/types/Kardex.types";
+import { KardexProps } from "../types/Kardex.types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 

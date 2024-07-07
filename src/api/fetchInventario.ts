@@ -1,5 +1,5 @@
 import axios from "axios";
-import { InventarioProps } from "src/types/Inventario.types";
+import { InventarioProps } from "../types/Inventario.types";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
