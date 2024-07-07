@@ -20,4 +20,5 @@ export interface FilterKardexProps {
 export type ModalPropsKardex = {
   isVisible: boolean;
   onClose: () => void;
+  onAdd: (data: KardexProps) => void;
 };

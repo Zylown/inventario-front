@@ -1,5 +1,5 @@
 import { IoCloseCircle } from "react-icons/io5";
-import { KardexProps, ModalPropsKardex } from "src/types/Kardex.types";
+import { KardexProps, ModalPropsKardex } from "../../types/Kardex.types";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormAddSchemaKardex } from "../../validations/FormAddKardex.validate";
@@ -7,14 +7,17 @@ import DatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { es } from "date-fns/locale";
 import { format, parse } from "date-fns";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const locale = es;
 registerLocale("es", locale);
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function ModalAddKardex({
   isVisible,
   onClose,
+  onAdd,
 }: ModalPropsKardex) {
   const { control, handleSubmit, reset, setValue } = useForm<KardexProps>({
     resolver: zodResolver(FormAddSchemaKardex),
@@ -22,6 +25,20 @@ export default function ModalAddKardex({
 
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<Date | null>(null);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await fetch(`${API_URL}/inventario`);
+        const data = await response.json();
+        setProducts(data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+    fetchProducts();
+  }, []);
 
   if (!isVisible) return null;
 
@@ -30,6 +47,9 @@ export default function ModalAddKardex({
     const formattedTime = time ? format(time, "HH:mm") : "";
     const formData = { ...data, fecha: formattedDate, hora: formattedTime };
     console.log(formData);
+    if (onAdd) {
+      onAdd(formData);
+    }
     if (onClose) {
       onClose();
     }
@@ -128,12 +148,17 @@ export default function ModalAddKardex({
                 />
               </div>
             </div>
-            <input
-              type="text"
-              placeholder="Producto"
+            <select
               className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
               {...control.register("producto")}
-            />
+            >
+              <option value="">Seleccione un producto</option>
+              {products.map((product: KardexProps) => (
+                <option key={product.id} value={product.producto}>
+                  {product.producto}
+                </option>
+              ))}
+            </select>
             <input
               type="text"
               placeholder="Descripción"

@@ -5,7 +5,7 @@ import { getKardex } from "../api/fetchKardex";
 type StoreState = {
   kardex: KardexProps[];
   setKardex: (kardex: KardexProps[]) => void;
-  //   addKardex: (kardex: KardexProps) => void;
+  addKardex: (kardex: KardexProps) => void;
   //   editKardex: (kardex: KardexProps) => void;
 };
 
@@ -13,6 +13,8 @@ type StoreState = {
 export const useKardexStore = create<StoreState>((set) => ({
   kardex: [],
   setKardex: (kardex) => set({ kardex }), // esto sirve para actualizar el estado de kardex y mostrarlo en la tabla
+  addKardex: (kardex) =>
+    set((state) => ({ kardex: [...state.kardex, kardex] })), // esto sirve para agregar un nuevo kardex a la tabla
 }));
 
 // Inicializa la tienda de manera asíncrona
