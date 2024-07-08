@@ -14,18 +14,24 @@ registerLocale("es", locale);
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+interface Product extends KardexProps {
+  stock: number;
+}
+
 export default function ModalAddKardex({
   isVisible,
   onClose,
   onAdd,
 }: ModalPropsKardex) {
-  const { control, handleSubmit, reset, setValue } = useForm<KardexProps>({
-    resolver: zodResolver(FormAddSchemaKardex),
-  });
+  const { control, handleSubmit, reset, setValue, watch } =
+    useForm<KardexProps>({
+      resolver: zodResolver(FormAddSchemaKardex),
+    });
 
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<Date | null>(null);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [initialStock, setInitialStock] = useState(0);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -39,6 +45,17 @@ export default function ModalAddKardex({
     };
     fetchProducts();
   }, []);
+
+  const selectProduct = watch("producto");
+
+  useEffect(() => {
+    const product = products.find((p) => p.producto === selectProduct);
+    if (product) {
+      setInitialStock(product.stock || 0);
+    } else {
+      setInitialStock(0);
+    }
+  }, [selectProduct, products]);
 
   if (!isVisible) return null;
 
@@ -180,7 +197,9 @@ export default function ModalAddKardex({
             <input
               type="number"
               placeholder="Stock inicial"
-              className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
+              className="w-full p-2 bg-crema-oscura rounded-lg outline-none transition-all"
+              value={initialStock}
+              disabled
               {...control.register("inicial")}
             />
             <input

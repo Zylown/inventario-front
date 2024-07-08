@@ -19,8 +19,10 @@ export const FormAddSchemaKardex = z.object({
   nombre: z
     .string({ message: "El nombre tiene que ser texto" })
     .nonempty({ message: "El nombre no puede estar vacío" }),
-  inicial: z.number({ message: "El stock inicial tiene que ser número" }),
+  inicial: z
+    .number({ message: "El stock inicial tiene que ser número" })
+    .min(0, { message: "El stock inicial no puede ser negativo" }),
   entrada: z.number({ message: "La entrada tiene que ser número" }),
   salida: z.number({ message: "La salida tiene que ser número" }),
-  final: z.number({ message: "El stock final tiene que ser número" }),
+  // final: z.number({ message: "El stock final tiene que ser número" }),
 });
