@@ -23,15 +23,21 @@ export default function ModalAddKardex({
   onClose,
   onAdd,
 }: ModalPropsKardex) {
-  const { control, handleSubmit, reset, setValue, watch } =
-    useForm<KardexProps>({
-      resolver: zodResolver(FormAddSchemaKardex),
-    });
+  const {
+    control,
+    handleSubmit,
+    reset,
+    setValue,
+    watch,
+    formState: { errors },
+  } = useForm<KardexProps>({
+    resolver: zodResolver(FormAddSchemaKardex),
+  });
 
   const [date, setDate] = useState<Date | null>(null);
   const [time, setTime] = useState<Date | null>(null);
   const [products, setProducts] = useState<Product[]>([]);
-  const [initialStock, setInitialStock] = useState(0);
+  const [initialStock, setInitialStock] = useState<number | null>(null);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -51,18 +57,27 @@ export default function ModalAddKardex({
   useEffect(() => {
     const product = products.find((p) => p.producto === selectProduct);
     if (product) {
-      setInitialStock(product.stock || 0);
+      setInitialStock(product.stock || null);
+      setValue("inicial", product.stock || 0); // Aquí asignamos el valor al formulario
     } else {
-      setInitialStock(0);
+      setInitialStock(null);
+      setValue("inicial", 0); // Establecemos un valor predeterminado de 0
     }
-  }, [selectProduct, products]);
+  }, [selectProduct, products, setValue]);
 
   if (!isVisible) return null;
 
   const onSubmit = async (data: KardexProps) => {
     const formattedDate = date ? format(date, "dd/MM/yyyy") : "";
     const formattedTime = time ? format(time, "HH:mm") : "";
-    const formData = { ...data, fecha: formattedDate, hora: formattedTime };
+    const final = data.inicial + data.entrada - data.salida;
+    const formData = {
+      ...data,
+      fecha: formattedDate,
+      hora: formattedTime,
+      final,
+    };
+
     console.log(formData);
     if (onAdd) {
       onAdd(formData);
@@ -176,44 +191,67 @@ export default function ModalAddKardex({
                 </option>
               ))}
             </select>
+            {errors.producto && (
+              <p className="text-red-500">{"* " + errors.producto.message}</p>
+            )}
             <input
               type="text"
               placeholder="Descripción"
               className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
               {...control.register("descripcion")}
             />
+            {errors.descripcion && (
+              <p className="text-red-500">
+                {"* " + errors.descripcion.message}
+              </p>
+            )}
             <input
               type="text"
               placeholder="Agente"
               className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
               {...control.register("agente")}
             />
+            {errors.agente && (
+              <p className="text-red-500">{"* " + errors.agente.message}</p>
+            )}
             <input
               type="text"
               placeholder="Nombre"
               className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
               {...control.register("nombre")}
             />
+            {errors.nombre && (
+              <p className="text-red-500">{"* " + errors.nombre.message}</p>
+            )}
             <input
               type="number"
               placeholder="Stock inicial"
               className="w-full p-2 bg-crema-oscura rounded-lg outline-none transition-all"
-              value={initialStock}
+              value={initialStock !== null ? initialStock : ""}
               disabled
               {...control.register("inicial")}
             />
+            {errors.inicial && (
+              <p className="text-red-500">{"* " + errors.inicial.message}</p>
+            )}
             <input
               type="number"
               placeholder="Entrada"
               className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
               {...control.register("entrada")}
             />
+            {errors.entrada && (
+              <p className="text-red-500">{"* " + errors.entrada.message}</p>
+            )}
             <input
               type="number"
               placeholder="Salida"
               className="w-full p-2 bg-crema rounded-lg outline-none hover:bg-crema-oscura transition-all"
               {...control.register("salida")}
             />
+            {errors.salida && (
+              <p className="text-red-500">{"* " + errors.salida.message}</p>
+            )}
             {/* <input
               type="number"
               placeholder="Stock final"
