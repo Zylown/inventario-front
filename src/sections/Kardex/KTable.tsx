@@ -81,8 +81,15 @@ export default function KTable({ searchDate }: FilterKardexProps) {
       );
     });
 
+    socket.on("deleteKardex", (deletedKardex: KardexProps) => {
+      setKardex((prevKardex) =>
+        prevKardex.filter((item) => item.id !== deletedKardex.id)
+      );
+    });
+
     return () => {
       socket.off("updateKardex");
+      socket.off("deleteKardex");
     };
   }, []);
 
