@@ -57,10 +57,10 @@ export default function ModalAddKardex({
   useEffect(() => {
     const product = products.find((p) => p.producto === selectProduct);
     if (product) {
-      setInitialStock(product.stock || null);
+      setInitialStock(product.stock || null); // Aquí guardamos el valor del stock inicial
       setValue("inicial", product.stock || 0); // Aquí asignamos el valor al formulario
     } else {
-      setInitialStock(null);
+      setInitialStock(null); // Si no hay producto seleccionado, el stock inicial es null
       setValue("inicial", 0); // Establecemos un valor predeterminado de 0
     }
   }, [selectProduct, products, setValue]);
