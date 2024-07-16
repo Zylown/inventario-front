@@ -71,11 +71,12 @@ export default function Table({
   // Escuchar eventos de actualización de inventario
   useEffect(() => {
     socket.on("updateInventory", (updatedProduct: InventarioProps) => {
-
       // Actualiza el estado del inventario
       setInventario((prevInventario) =>
-        prevInventario.map((product) =>
-          product.id === updatedProduct.id ? updatedProduct : product
+        prevInventario.map(
+          (product) =>
+            product.id === updatedProduct.id ? updatedProduct : product
+          // Si el id del producto actual es igual al id del producto actualizado, devolver el producto actualizado, de lo contrario devolver el producto actual
         )
       );
     });
